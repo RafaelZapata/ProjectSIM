@@ -1,47 +1,56 @@
 package SimpleInventoryManagement;
 
+import javax.swing.JOptionPane;
+
+import Util.DMVendedor;
+
 public class Vendedor extends Funcionario{
 	
-	private int codigoVendedor;
+	private int idVendedor; //Armazena o código do vendedor pego do banco de dados
+	private float salario;
 	
-//	public Vendedor(String nome, String cpf, float salario, Vendas venda, int codigoVendedor) {
-//		super(nome, cpf, salario, venda);
-//		this.setCodigoVendedor(codigoVendedor);
-//	}
+	private DMVendedor dmVendedor;
 	
-	public int getCodigoVendedor() {
-		return codigoVendedor;
-	}
-
-	public void setCodigoVendedor(int codigoVendedor) {
-		this.codigoVendedor = codigoVendedor;
-	}
-
-//	Método herdado da classe abstrata Funcionario
-	@Override
-	public double calcularComissao(Vendas venda) {
-		double comissao = venda.calcularValor() * 0.10;
-		return comissao;
-	}
-
-//	Método herdado da classe abstrata Funcionario
-	@Override
-	public String dadosFuncionario() {
-		String mensagem = "\n";
-		mensagem += "Nome: "+this.getNome()+"\nCPF: "+this.getCpf()+
-				"\nSalario: R$"+this.calcularSalario();
-		return mensagem;
-	}
-
-	@Override
-	public void novo_cadastro() {
-		this.setNome(nome);
-		this.setCpf(cpf);
-		this.setCodigoVendedor(codigoVendedor);
-		this.setSalario(salario);
-		this.setVenda(venda);
+	public Vendedor(String nome, String cpf, float salario, Vendas objVenda) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.salario = salario;
+		this.atRefVenda = objVenda;
+		dmVendedor = new DMVendedor();
+		dmVendedor.conectaDatabase();
+		incluir(this);
 		
 	}
 	
+	public int getIdVendedor() {
+		return idVendedor;
+	}
+
+	public void setIdVendedor(int idVendedor) {
+		this.idVendedor = idVendedor;
+	}
 	
+	public float getSalario() {
+		return salario;
+	}
+	
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+	
+	public Object consultar() {
+		return dmVendedor.consultar(this);
+	}
+	
+	public void incluir(Vendedor objVendedor) {
+		if(objVendedor.getCpf().equals("")) {
+			JOptionPane.showMessageDialog(null, "O cpf do vendedor é obrigatorio");
+		} else {
+			if(dmVendedor.consultar(objVendedor)!=null) {
+				JOptionPane.showMessageDialog(null, "Já existe um vendedor cadastrado nesse cpf");
+			} else {
+				dmVendedor.incluir(objVendedor);
+			}
+		}
+	}
 }

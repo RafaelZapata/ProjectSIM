@@ -1,16 +1,40 @@
 package SimpleInventoryManagement;
 
-import java.util.Date;
+import javax.swing.JOptionPane;
 
-public class Cliente implements iCadastrar{
+import Util.DMCliente;
+
+public class Cliente{
 	
+	private int idCliente;
+
 	private String nome;
-	private String endereco;
-	private String telefone;
 	private String cpf;
-	private Date dataNascimento;
-	private String genero;
+	private String dataNascimento;
+//	private String endereco;
+	private String telefone;
+	private Endereco atRefEndereco;
+	private DMCliente dmCliente;
 	
+	public Cliente(String nome, String cpf, String dataNascimento, String telefone, Endereco objEndereco) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.telefone = telefone;
+		this.atRefEndereco = objEndereco;
+		dmCliente = new DMCliente();
+		dmCliente.conectaDatabase();
+		incluir(this);
+		
+	}
+	
+	public int getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(int idCliente) {
+		this.idCliente = idCliente;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -19,16 +43,27 @@ public class Cliente implements iCadastrar{
 		this.nome = nome;
 	}
 	
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+//	public String getEndereco() {
+//		return endereco;
+//	}
+//	public void setEndereco(String endereco) {
+//		this.endereco = endereco;
+//	}
+	
 	
 	public String getTelefone() {
 		return telefone;
 	}
+	public Endereco getAtRefEndereco() {
+		return atRefEndereco;
+	}
+
+
+	public void setAtRefEndereco(Endereco atRefEndereco) {
+		this.atRefEndereco = atRefEndereco;
+	}
+
+
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
@@ -39,22 +74,38 @@ public class Cliente implements iCadastrar{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public String getGenero() {
-		return genero;
+
+//	public Object buscar(String cpf) {
+//		Cliente objCliente = (Cliente) dmCliente.buscar(cpf);
+//		if(objCliente != null) {
+//			return objCliente;
+//		}
+//		return objCliente;
+//	}
+	
+	public Object consultar() {
+		return dmCliente.consultar(this);
 	}
-	public void setGenero(String genero) {
-		this.genero = genero;
+	
+	public void incluir(Cliente objCliente) {
+		if(objCliente.cpf.equals("")) {
+			JOptionPane.showMessageDialog(null, "O cpf do cliente é obrigatorio");
+		} else {
+			if(dmCliente.consultar(this)!=null) {
+				JOptionPane.showMessageDialog(null, "Já existe um cliente com esse cpf cadastrado");
+			} else {
+				dmCliente.incluir(this);
+			}
+		}
 	}
-	@Override
-	public void novo_cadastro() {
-		this.setNome(nome);
-		this.setEndereco(endereco);
-		this.setTelefone(telefone);
-	}
+	
+//	public void shutdown() {
+//		dmCliente.shutdown();
+//	}
 }

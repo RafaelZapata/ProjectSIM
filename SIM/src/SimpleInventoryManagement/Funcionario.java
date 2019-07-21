@@ -1,16 +1,8 @@
 package SimpleInventoryManagement;
 
-public abstract class Funcionario implements iCadastrar{
+public abstract class Funcionario{
 	protected  String nome, cpf;
-	protected float salario;
-	protected Vendas venda;	
-	
-//	public Funcionario(String nome, String cpf, float salario, Vendas venda) {
-//		this.setNome(nome);
-//		this.setCpf(cpf);
-//		this.setSalario(salario);
-//		this.setVenda(venda);
-//	}
+	protected Vendas atRefVenda;	
 	
 	public String getNome() {
 		return nome;
@@ -28,27 +20,11 @@ public abstract class Funcionario implements iCadastrar{
 		this.cpf = cpf;
 	}
 	
-	public float getSalario() {
-		return salario;
-	}
-	
-	public void setSalario(float salario) {
-		this.salario = salario;
-	}
-	
-	public Vendas getVenda() {
-		return venda;
+	public Vendas getAtRefVenda() {
+		return atRefVenda;
 	}
 
-	public void setVenda(Vendas venda) {
-		this.venda = venda;
-	}
-	
-//	Métodos abstratos que as classes terão de implementar
-	public abstract double calcularComissao(Vendas venda);
-	public abstract String dadosFuncionario();
-	
-	public double calcularSalario() {
-		return this.getSalario() + this.calcularComissao(venda);
+	public void setAtRefVenda(Vendas atRefVenda) {
+		this.atRefVenda = atRefVenda;
 	}
 }

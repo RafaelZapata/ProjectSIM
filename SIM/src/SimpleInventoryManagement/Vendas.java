@@ -1,48 +1,63 @@
 package SimpleInventoryManagement;
 
 public class Vendas{
-	public Produto[] produto;
-	public String data;
-	public double preco;
+	private String data;
+	private float precoTotal;
+	private int idVenda; //Armazena o código da venda do banco de dados
+	private Vendedor atRefVendedor;
+	private Cliente atRefCliente;
+	private Produto atRefProduto;
 	
-	public Vendas(Produto[] produto, String data) {
-		this.setProduto(produto);
-		this.setData(data);
-		this.calcularValor();
+	public Vendas() {
+		
 	}
 	
-	public Produto[] getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto[] produto) {
-		this.produto = produto;
-	}
-
 	public String getData() {
 		return data;
 	}
-	
+
+	public Vendedor getAtRefVendedor() {
+		return atRefVendedor;
+	}
+
+	public void setAtRefVendedor(Vendedor atRefVendedor) {
+		this.atRefVendedor = atRefVendedor;
+	}
+
+	public Cliente getAtRefCliente() {
+		return atRefCliente;
+	}
+
+	public void setAtRefCliente(Cliente atRefCliente) {
+		this.atRefCliente = atRefCliente;
+	}
+
+	public Produto getAtRefProduto() {
+		return atRefProduto;
+	}
+
+	public void setAtRefProduto(Produto atRefProduto) {
+		this.atRefProduto = atRefProduto;
+	}
+
 	public void setData(String data) {
 		this.data = data;
 	}
 
-	public double calcularValor() {
-		double valorTotal = 0;
-		for(int i=0; i<produto.length; i++) {
-			
-		}	
-		return valorTotal;
+	public float getprecoTotal() {
+		return precoTotal;
 	}
-	
-	public double desconto() {
-		return this.calcularValor() - (0.05*this.calcularValor());
+
+	public void setprecoTotal(float precoTotal) {
+		this.precoTotal = precoTotal;
 	}
-	
-//	Relatorio do vendedor e da venda
-	public String gerarVendas(Vendedor vendedor) {
-		return ("Vendedor: "+vendedor.getNome()+"\nCodigo vendedor: "+vendedor.getCodigoVendedor()+
-				"\nValor total: R$"+this.calcularValor()+"\nÀ vista no dinheiro: R$"+desconto()+"\nData da venda: "+this.getData());
+
+	public int getIdVenda() {
+		return idVenda;
+	}
+
+	public void setIdVenda(int idVenda) {
+		this.idVenda = idVenda;
 	}
 	
 }

@@ -1,5 +1,5 @@
 package SimpleInventoryManagement;
 
-interface iCadastrar{
-	public abstract void novo_cadastro();
+public interface iCadastrar{
+	public abstract void cadastro(Object object);
 }
