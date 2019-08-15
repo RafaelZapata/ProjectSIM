@@ -67,7 +67,7 @@ public class CadClientView extends JFrame{
 				nome = jTextFieldNome.getText();
 				dataNascimento = jTextFieldDataNascimento.getText();
 				telefone = jTextFieldTelefone.getText();
-				cliente = new Cliente(nome, cpf, dataNascimento, telefone, endereco);
+				
 				
 			}
 		});

@@ -14,7 +14,7 @@ public class DMEndereco extends DMGeral{
 	public void incluir(Object obj) {
 		Endereco objEndereco= (Endereco) obj;
 		try {
-			String incluirSqlEndereco= "INSERT INTO Endereco(rua, numeroResidencia, bairro, cidade, estado) VALUES (?, ?, ?, ?, ?)";
+			String incluirSqlEndereco= "INSERT INTO Endereco(rua, numero, bairro, cidade, estado) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlEndereco, Statement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, objEndereco.getRua());
 			pStmt.setInt(2, objEndereco.getNumeroResidencia());
@@ -48,7 +48,7 @@ public class DMEndereco extends DMGeral{
 			ResultSet result = pStmt.executeQuery();
 			if(result.next()) {
 				//Pegar o id do endereço e relacionar com o id do cliente
-				//Não codificado ainda
+				//Não codificado ainda 
 				result.close();
 			} else {
 				objEndereco = null;

@@ -1,5 +1,6 @@
 package Util;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,13 +16,12 @@ public class DMVendedor extends DMGeral{
 	public void incluir(Object obj) {
 		Vendedor objVendedor = (Vendedor) obj;
 		
-		String incluirSqlVendedor = "INSERT INTO vendedor (nome, cpf, salario, id_venda) VALUES (?, ?, ?, ?)";
+		String incluirSqlVendedor = "INSERT INTO vendedor (cpf, nome, dataAdmissao) VALUES (?, ?, ?)";
 		try {
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlVendedor, Statement.RETURN_GENERATED_KEYS);
-			pStmt.setString(1, objVendedor.getNome());
-			pStmt.setString(2, objVendedor.getCpf());
-			pStmt.setFloat(3, objVendedor.getSalario());
-			pStmt.setInt(4, objVendedor.getAtRefVenda().getIdVenda());
+			pStmt.setString(1, objVendedor.getCpf());
+			pStmt.setString(2, objVendedor.getNome());
+			pStmt.setDate(3, (Date) objVendedor.getDataAdmissao());
 			pStmt.executeUpdate();
 			
 			ResultSet resultSet = pStmt.getGeneratedKeys();

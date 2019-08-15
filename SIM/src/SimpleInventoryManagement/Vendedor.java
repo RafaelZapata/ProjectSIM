@@ -1,5 +1,7 @@
 package SimpleInventoryManagement;
 
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 import Util.DMVendedor;
@@ -8,20 +10,29 @@ public class Vendedor extends Funcionario{
 	
 	private int idVendedor; //Armazena o código do vendedor pego do banco de dados
 	private float salario;
+	private Date dataAdmissao;
 	
 	private DMVendedor dmVendedor;
 	
-	public Vendedor(String nome, String cpf, float salario, Vendas objVenda) {
+	public Vendedor(String nome, String cpf, float salario, Date dataAdmissao) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.salario = salario;
-		this.atRefVenda = objVenda;
+		this.dataAdmissao = dataAdmissao;
 		dmVendedor = new DMVendedor();
 		dmVendedor.conectaDatabase();
 		incluir(this);
 		
 	}
 	
+	public Date getDataAdmissao() {
+		return dataAdmissao;
+	}
+
+	public void setDataAdmissao(Date dataAdmissao) {
+		this.dataAdmissao = dataAdmissao;
+	}
+
 	public int getIdVendedor() {
 		return idVendedor;
 	}

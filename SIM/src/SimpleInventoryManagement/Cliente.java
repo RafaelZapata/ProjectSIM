@@ -1,5 +1,7 @@
 package SimpleInventoryManagement;
 
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 import Util.DMCliente;
@@ -10,18 +12,21 @@ public class Cliente{
 
 	private String nome;
 	private String cpf;
-	private String dataNascimento;
+	private Date dataNascimento;
 //	private String endereco;
 	private String telefone;
 	private Endereco atRefEndereco;
 	private DMCliente dmCliente;
 	
-	public Cliente(String nome, String cpf, String dataNascimento, String telefone, Endereco objEndereco) {
+	public Cliente() {
+		
+	}
+	
+	public Cliente(String nome, String cpf, String telefone, Date dataNascimento) {
 		this.nome = nome;
 		this.cpf = cpf;
-		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
-		this.atRefEndereco = objEndereco;
+		this.dataNascimento = dataNascimento;
 		dmCliente = new DMCliente();
 		dmCliente.conectaDatabase();
 		incluir(this);
@@ -43,26 +48,9 @@ public class Cliente{
 		this.nome = nome;
 	}
 	
-//	public String getEndereco() {
-//		return endereco;
-//	}
-//	public void setEndereco(String endereco) {
-//		this.endereco = endereco;
-//	}
-	
-	
 	public String getTelefone() {
 		return telefone;
 	}
-	public Endereco getAtRefEndereco() {
-		return atRefEndereco;
-	}
-
-
-	public void setAtRefEndereco(Endereco atRefEndereco) {
-		this.atRefEndereco = atRefEndereco;
-	}
-
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
@@ -74,20 +62,12 @@ public class Cliente{
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-	public String getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(String dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
-//	public Object buscar(String cpf) {
-//		Cliente objCliente = (Cliente) dmCliente.buscar(cpf);
-//		if(objCliente != null) {
-//			return objCliente;
-//		}
-//		return objCliente;
-//	}
 	
 	public Object consultar() {
 		return dmCliente.consultar(this);

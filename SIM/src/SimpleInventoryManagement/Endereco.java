@@ -8,6 +8,10 @@ public class Endereco {
 	private DMEndereco dmEndereco;
 	private int idEndereco; //Armazena o id do banco de dados
 	
+	public Endereco() {
+		
+	}
+	
 	public Endereco(String rua, int numeroResidencia, String bairro, String cidade, String estado) {
 		this.rua = rua;
 		this.numeroResidencia = numeroResidencia;

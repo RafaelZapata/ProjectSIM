@@ -1,18 +1,31 @@
 package SimpleInventoryManagement;
 
+import java.util.Date;
+
+import Util.*;
+
 public class Vendas{
-	private String data;
+	private Date data;
 	private float precoTotal;
 	private int idVenda; //Armazena o código da venda do banco de dados
 	private Vendedor atRefVendedor;
 	private Cliente atRefCliente;
 	private Produto atRefProduto;
 	
-	public Vendas() {
-		
+	private DMVenda dmVenda;
+	
+	public Vendas(float precoTotal, Date data, Vendedor objVendedor, Cliente objCliente, Produto objProduto) {
+		this.precoTotal = precoTotal;
+		this.data = data;
+		this.atRefVendedor = objVendedor;
+		this.atRefCliente = objCliente;
+		this.atRefProduto = objProduto;
+		dmVenda = new DMVenda();
+		dmVenda.conectaDatabase();
+		incluir(this);
 	}
 	
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
@@ -40,7 +53,7 @@ public class Vendas{
 		this.atRefProduto = atRefProduto;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
@@ -58,6 +71,14 @@ public class Vendas{
 
 	public void setIdVenda(int idVenda) {
 		this.idVenda = idVenda;
+	}
+	
+	public Object consultar() {
+		return dmVenda.consultar(this);
+	}
+	
+	public void incluir(Vendas objVenda) {
+		dmVenda.incluir(this);
 	}
 	
 }

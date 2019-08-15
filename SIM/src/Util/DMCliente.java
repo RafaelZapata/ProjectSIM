@@ -2,6 +2,8 @@ package Util;
 
 import java.sql.*;
 
+import java.sql.Date;
+
 import javax.swing.JOptionPane;
 
 import SimpleInventoryManagement.*;
@@ -14,13 +16,12 @@ public class DMCliente extends DMGeral{
 		Cliente objCliente = (Cliente) obj;
 		try {
 //			Statement statement = getConnection().createStatement();
-			String incluirSqlCliente = "INSERT INTO Cliente (nome, cpf, dataNascimento, telefone, id_endereco) VALUES (?, ?, ?, ?, ?)";
+			String incluirSqlCliente = "INSERT INTO Cliente (nome, cpf, telefone, dataNascimento) VALUES (?, ?, ?, ?)";
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlCliente, Statement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, objCliente.getNome());
 			pStmt.setString(2, objCliente.getCpf());
-			pStmt.setString(3, objCliente.getDataNascimento());
-			pStmt.setString(4, objCliente.getTelefone());
-			pStmt.setObject(5, objCliente.getAtRefEndereco().getIdEndereco());
+			pStmt.setString(3, objCliente.getTelefone());
+			pStmt.setDate(4, (Date) objCliente.getDataNascimento());
 			pStmt.executeUpdate();
 			
 			ResultSet resultSet = pStmt.getGeneratedKeys();
@@ -45,17 +46,19 @@ public class DMCliente extends DMGeral{
 			pStmt.setString(1, objCliente.getCpf());
 			ResultSet result = pStmt.executeQuery();
 			if(result.next()) {
-				JOptionPane.showMessageDialog(null, "Nome: "+result.getString("nome") + "Cpf: "+result.getString("cpf")+ "Data Nascimento:" + result.getString("dataNascimento")+ "Telefone: " + result.getString("telefone"));
+				JOptionPane.showMessageDialog(null, "Nome: "+result.getString("nome") + "\nCpf: "+result.getString("cpf")+ "\nData Nascimento:" + result.getString("dataNascimento")+ "\nTelefone: " + result.getString("telefone"));
 				result.close();
 			} else {
 				objCliente = null;
 			}
 			pStmt.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println(e);
 			e.printStackTrace();
 		}
 		return objCliente;
 	}
+	
+	
 	
 }
