@@ -1,4 +1,4 @@
-package SimpleInventoryManagement;
+package model;
 
 public abstract class Funcionario{
 	protected  String nome, cpf;

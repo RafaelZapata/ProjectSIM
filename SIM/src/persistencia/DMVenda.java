@@ -1,4 +1,4 @@
-package Util;
+package persistencia;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import com.mysql.cj.protocol.Resultset;
 
-import SimpleInventoryManagement.*;
+import model.*;
 
 public class DMVenda extends DMGeral{
 

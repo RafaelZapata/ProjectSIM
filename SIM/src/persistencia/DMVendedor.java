@@ -1,4 +1,4 @@
-package Util;
+package persistencia;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-import SimpleInventoryManagement.Vendedor;
+import model.Vendedor;
 
 public class DMVendedor extends DMGeral{
 
@@ -60,6 +60,17 @@ public class DMVendedor extends DMGeral{
 		}
 		
 		return objVendedor;
+	}
+	
+	public void excluir(int id) {
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sqlExcluir = "DELETE FROM Vendedor WHERE idVendedor = "+id+";";
+			stmt.execute(sqlExcluir);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+			e.printStackTrace();
+		}
 	}
 
 }

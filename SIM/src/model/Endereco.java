@@ -1,6 +1,6 @@
-package SimpleInventoryManagement;
+package model;
 
-import Util.DMEndereco;
+import persistencia.DMEndereco;
 
 public class Endereco {
 	private String rua, bairro, estado, cidade;
@@ -75,4 +75,8 @@ public class Endereco {
 	public void incluir(Endereco objEndereco) {
 		dmEndereco.incluir(this);
 	}	
+	
+	public void excluir(int id) {
+		dmEndereco.excluir(id);
+	}
 }

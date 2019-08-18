@@ -1,10 +1,10 @@
-package SimpleInventoryManagement;
+package model;
 
 import java.util.*;
 
 import javax.swing.JOptionPane;
 
-import Util.*;
+import persistencia.*;
 
 public class Produto {
 	private int idProduto; //Armazena o id do produto do banco de dados 
@@ -22,9 +22,6 @@ public class Produto {
 		this.descricao = descricao;
 		this.quantidade = quantidade;
 		this.valor = valor;
-		dmProduto = new DMProduto();
-		dmProduto.conectaDatabase();
-		incluir(this);
 	}
 	
 	public int getIdProduto() {
@@ -68,8 +65,10 @@ public class Produto {
 		return dmProduto.pesquisar();
 	}
 	
-	public void incluir(Produto objProduto) {
-		if(objProduto.getDescricao().equals("")) {
+	public void incluir() {
+		dmProduto = new DMProduto();
+		dmProduto.conectaDatabase();
+		if(this.getDescricao().equals("")) {
 			JOptionPane.showMessageDialog(null, "É necessário o nome do produto a ser cadastrado");
 		} else {
 			if(dmProduto.consultar(this)!=null) {
@@ -78,5 +77,9 @@ public class Produto {
 				dmProduto.incluir(this);
 			}
 		}
+	}
+	
+	public void excluir(int id) {
+		dmProduto.excluir(id);
 	}
 }

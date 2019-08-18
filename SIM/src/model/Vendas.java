@@ -1,8 +1,8 @@
-package SimpleInventoryManagement;
+package model;
 
 import java.util.Date;
 
-import Util.*;
+import persistencia.*;
 
 public class Vendas{
 	private Date data;

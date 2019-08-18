@@ -1,10 +1,10 @@
-package SimpleInventoryManagement;
+package model;
 
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import Util.DMVendedor;
+import persistencia.DMVendedor;
 
 public class Vendedor extends Funcionario{
 	
@@ -63,5 +63,9 @@ public class Vendedor extends Funcionario{
 				dmVendedor.incluir(objVendedor);
 			}
 		}
+	}
+	
+	public void excluir(int id) {
+		dmVendedor.excluir(id);
 	}
 }

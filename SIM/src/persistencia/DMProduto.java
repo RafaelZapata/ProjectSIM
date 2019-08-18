@@ -1,9 +1,11 @@
-package Util;
+package persistencia;
 
 import java.sql.*;
 import java.util.*;
 
-import SimpleInventoryManagement.*;
+import javax.swing.JOptionPane;
+
+import model.*;
 
 public class DMProduto extends DMGeral {
 
@@ -66,8 +68,7 @@ public class DMProduto extends DMGeral {
 			ResultSet result = pStmt.executeQuery();
 			while(result.next()) {
 				Produto pro = new Produto(result.getString("descricao"), result.getFloat("valor"), result.getInt("quantidade"));
-//				pro.setIdProduto(result.getInt(1));
-				System.out.println(pro.getDescricao());
+				pro.setIdProduto(result.getInt(1));
 				produtos.add(pro);
 			}
 		
@@ -78,6 +79,17 @@ public class DMProduto extends DMGeral {
 		}
 		
 		return produtos;
+	}
+	
+	public void excluir(int id) {
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sqlExcluir = "DELETE FROM Produto WHERE idProduto = "+id+";";
+			stmt.execute(sqlExcluir);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+			e.printStackTrace();
+		}
 	}
 	
 }

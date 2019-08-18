@@ -1,12 +1,10 @@
-package Util;
+package persistencia;
 
 import java.sql.*;
 
-import java.sql.Date;
-
 import javax.swing.JOptionPane;
 
-import SimpleInventoryManagement.*;
+import model.*;
 
 public class DMCliente extends DMGeral{
 	Connection conCliente;
@@ -59,6 +57,14 @@ public class DMCliente extends DMGeral{
 		return objCliente;
 	}
 	
-	
-	
+	public void excluir(int id) {
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sqlExcluir = "DELETE FROM Cliente WHERE idCliente = "+id+";";
+			stmt.execute(sqlExcluir);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+			e.printStackTrace();
+		}
+	}
 }

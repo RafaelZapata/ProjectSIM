@@ -1,12 +1,14 @@
-package Util;
+package persistencia;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import SimpleInventoryManagement.Endereco;
-import SimpleInventoryManagement.Produto;
+import javax.swing.JOptionPane;
+
+import model.Endereco;
+import model.Produto;
 
 public class DMEndereco extends DMGeral{
 
@@ -60,6 +62,17 @@ public class DMEndereco extends DMGeral{
 		}
 		
 		return objEndereco;
+	}
+	
+	public void excluir(int id) {
+		try {
+			Statement stmt = getConnection().createStatement();
+			String sqlExcluir = "DELETE FROM Endereco WHERE idEndereco = "+id+";";
+			stmt.execute(sqlExcluir);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+			e.printStackTrace();
+		}
 	}
 	
 }

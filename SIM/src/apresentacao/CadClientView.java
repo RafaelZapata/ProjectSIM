@@ -1,4 +1,4 @@
-package View;
+package apresentacao;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.*;
-import SimpleInventoryManagement.*;
+import model.*;
 
 public class CadClientView extends JFrame{
 	private JLabel jLabelCpf, jLabelNome, jLabelDataNascimento, jLabelRua, jLabelTelefone;

@@ -1,6 +1,6 @@
-package SimpleInventoryManagement;
+package model;
 
-import Util.DMClienteEndereco;
+import persistencia.DMClienteEndereco;
 
 public class ClienteEndereco {
 	private Cliente atRefCliente;

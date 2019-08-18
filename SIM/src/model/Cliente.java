@@ -1,10 +1,10 @@
-package SimpleInventoryManagement;
+package model;
 
 import java.util.Date;
 
 import javax.swing.JOptionPane;
 
-import Util.DMCliente;
+import persistencia.DMCliente;
 
 public class Cliente{
 	
@@ -19,7 +19,8 @@ public class Cliente{
 	private DMCliente dmCliente;
 	
 	public Cliente() {
-		
+		dmCliente = new DMCliente();
+		dmCliente.conectaDatabase();
 	}
 	
 	public Cliente(String nome, String cpf, String telefone, Date dataNascimento) {
@@ -83,6 +84,10 @@ public class Cliente{
 				dmCliente.incluir(this);
 			}
 		}
+	}
+	
+	public void excluir(int id) {
+		dmCliente.excluir(id);
 	}
 	
 //	public void shutdown() {

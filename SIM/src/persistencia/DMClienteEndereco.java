@@ -1,9 +1,9 @@
-package Util;
+package persistencia;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import SimpleInventoryManagement.*;
+import model.*;
 
 public class DMClienteEndereco extends DMGeral{
 
