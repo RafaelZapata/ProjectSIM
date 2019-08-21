@@ -16,11 +16,8 @@ public class Teste {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		System.out.println("Iniciando");
-		String result = JOptionPane.showInputDialog("Okay?");
-		if(result == "okay") {
-			JanelaPrincipal telaPrincipal = new JanelaPrincipal();
-			telaPrincipal.show();
-		}
+		JanelaPrincipal telaPrincipal = new JanelaPrincipal();
+		telaPrincipal.show();
 		
 		
 		
