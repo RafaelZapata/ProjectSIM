@@ -5,15 +5,15 @@ import java.sql.*;
 public abstract class DMGeral {
 	protected static Connection connection;
 	private String database = "bd_sim";
-	private String username = "rafael"; 
-	private String password = "root";
+	private String username = "adm"; 
+	private String password = "adm";
 
 	public static Connection getConnection() {
 		return connection;
 	}
 
 	public void conectaDatabase() {
-		String url = "jdbc:mysql://localhost/"+database;
+		String url = "jdbc:mysql://localhost/"+database+"?serverTimezone=UTC";
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

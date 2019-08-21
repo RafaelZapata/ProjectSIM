@@ -13,7 +13,18 @@ import persistencia.*;
 
 public class Teste {
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
+		System.out.println("Iniciando");
+		String result = JOptionPane.showInputDialog("Okay?");
+		if(result == "okay") {
+			JanelaPrincipal telaPrincipal = new JanelaPrincipal();
+			telaPrincipal.show();
+		}
+		
+		
+		
+		
 //		CadClientView tela = new CadClientView();
 //		java.util.Date d = new java.util.Date("09/06/1994");
 //		java.sql.Date dt = new java.sql.Date(d.getTime());

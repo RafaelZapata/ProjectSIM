@@ -1,6 +1,7 @@
 package apresentacao;
 
 import java.awt.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -9,6 +10,10 @@ import javax.swing.*;
 import model.*;
 
 public class CadClientView extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel jLabelCpf, jLabelNome, jLabelDataNascimento, jLabelRua, jLabelTelefone;
 	private JTextField jTextFieldCpf, jTextFieldNome, jTextFieldDataNascimento, jTextFieldRua, jTextFieldTelefone;
 	private JButton btnSalvar;
@@ -19,7 +24,7 @@ public class CadClientView extends JFrame{
 	Endereco endereco;
 	
 	public CadClientView() {
-		this.setTitle("Tela Criente");
+		this.setTitle("Tela Cliente");
 		this.setSize(320,500);
 		this.setLocationRelativeTo(null); 
 		this.setResizable(true);
@@ -55,24 +60,60 @@ public class CadClientView extends JFrame{
 		panel.add(jTextFieldRua);
 		
 		btnSalvar = new JButton("Salvar");
+		class BatSinal extends MouseAdapter {
+			public void mouseClicked(MouseEvent e) {
+				if (e.getSource() == btnSalvar) {
+					System.out.println("ROLA!");
+					//endereco
+					rua = jTextFieldRua.getText();
+//					end = new Endereco(rua,numero,complemento,bairro,cidade,cep,estado);
+
+					//telefone
+					telefone =  jTextFieldTelefone.getText();
+					
+					//pessoal
+					cpf = jTextFieldCpf.getText();
+					nome = jTextFieldNome.getText();
+					@SuppressWarnings("deprecation")
+					java.util.Date dataNascimento = new java.util.Date(jTextFieldDataNascimento.getText());			
+					Cliente cliente = new Cliente(nome, cpf, telefone, dataNascimento);		
+				}
+				
+//				if (e.getSource() == bLimpar) {
+//					tNome.setText("");
+//					tCpf.setText("");
+//					tDataNascimento.setText("");
+//					tRua.setText("");
+//					tNumero.setText("");
+//					tComplemento.setText("");
+//					tBairro.setText("");
+//					tCidade.setText("");
+//					tCep.setText("");
+//					tEstado.setText("");
+//					tDdi.setText("");
+//					tDdd.setText("");
+//					tTel.setText("");
+//					tTipo.setText("");
+//					tOperadora.setText("");
+//				}
+//				
+//				if (e.getSource() == bListar)
+//				{	pf.imprimir();
+//					JOptionPane.showMessageDialog(null,"ENDEREÇO COMPLETO:\n\n"+end.getRua()+", "+end.getNumero()+" - "+end.getComplemento()+" - "+end.getBairro()+" - "+end.getCidade()+"/"+end.getEstado()+" - CEP: "+end.getCep());
+//					JOptionPane.showMessageDialog(null,"TELEFONE COMPLETO:\n\n"+fone.getDdi()+" ("+fone.getDdd()+") "+fone.getNumero()+" - "+fone.getTipo()+" - "+fone.getOperadora());
+//				}
+//				
+//				if (e.getSource() == bFechar) {
+//					dispose();
+//					//System.exit(0);  
+				}
+			}	
 		
-		btnSalvar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				rua = jTextFieldRua.getText();
-//				endereco = new Endereco(rua); Falta adicionar os parametros do construtor de endereço
-				
-				cpf = jTextFieldCpf.getText();
-				nome = jTextFieldNome.getText();
-				dataNascimento = jTextFieldDataNascimento.getText();
-				telefone = jTextFieldTelefone.getText();
-				
-				
-			}
-		});
+		//adicionando ouvinte para os botões
+		BatSinal batman = new BatSinal();
+		btnSalvar.addMouseListener(batman);
+		panel.add(btnSalvar);
 		
-		panel.add(btnSalvar);
 						
 		this.repaint();		
 	}

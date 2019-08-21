@@ -76,7 +76,7 @@ public class Cliente{
 	
 	public void incluir(Cliente objCliente) {
 		if(objCliente.cpf.equals("")) {
-			JOptionPane.showMessageDialog(null, "O cpf do cliente é obrigatorio");
+			JOptionPane.showMessageDialog(null, "CPF Obrigatório!");
 		} else {
 			if(dmCliente.consultar(this)!=null) {
 				JOptionPane.showMessageDialog(null, "Já existe um cliente com esse cpf cadastrado");
