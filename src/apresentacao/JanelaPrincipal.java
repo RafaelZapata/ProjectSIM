@@ -42,8 +42,8 @@ public class JanelaPrincipal extends JFrame
             { System.exit(0); }
         });
 
-      //Imagem fundo
-        wallpaper = Toolkit.getDefaultToolkit().createImage("../SIM2/src/images/wallPaper0.png");
+        //Imagem fundo
+        wallpaper = Toolkit.getDefaultToolkit().createImage("../SIM2/src/images/background5.jpg");
         JPanel fundo = new NewContentPane();
         
         Container contentPane = getContentPane();

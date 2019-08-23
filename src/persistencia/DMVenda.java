@@ -1,13 +1,9 @@
 package persistencia;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import com.mysql.cj.protocol.Resultset;
-
 import model.*;
 
 public class DMVenda extends DMGeral{
@@ -20,8 +16,8 @@ public class DMVenda extends DMGeral{
 			String incluirSqlVenda = "INSERT INTO Venda (vendaValor, dataVenda, FK_Cliente_idCliente, FK_Vendedor_idVendedor)"
 					+ "VALUES (?, ?, ?, ?)";
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlVenda, Statement.RETURN_GENERATED_KEYS);
-			pStmt.setFloat(1, objVenda.getprecoTotal());
-			pStmt.setDate(2, (Date) objVenda.getData());
+			pStmt.setFloat(1, objVenda.getVendaValor());
+			pStmt.setString(2, objVenda.getData());
 			pStmt.setInt(3, objVenda.getAtRefCliente().getIdCliente());
 			pStmt.setInt(4, objVenda.getAtRefVendedor().getIdVendedor());
 			pStmt.executeUpdate();
@@ -40,8 +36,32 @@ public class DMVenda extends DMGeral{
 
 	@Override
 	public Object consultar(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
+		Vendas objVenda = (Vendas) obj;
+		String consultarProdutosVenda = "SELECT * FROM Venda WHERE idVenda = (?);";
+		try {
+			PreparedStatement pStmt = getConnection().prepareStatement(consultarProdutosVenda);
+			pStmt.setInt(1, objVenda.getIdVenda());
+			ResultSet result = pStmt.executeQuery();
+			if(result.next()) {
+				Vendedor vendedor = new Vendedor();
+				Cliente cliente = new Cliente();
+				vendedor.setIdVendedor(Integer.parseInt(result.getString("FK_Vendedor_idVendedor")));
+				vendedor.setNome(result.getString("nome"));
+				cliente.setIdCliente(Integer.parseInt(result.getString("FK_Cliente_idCliente")));
+				cliente.setNome(result.getString("nome"));
+				objVenda.setAtRefCliente(cliente);
+				objVenda.setAtRefVendedor(vendedor);
+				result.close();
+			} else {
+				System.out.println("Nada encontrado!");
+				objVenda = null;
+			}
+			pStmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return objVenda;
 	}
 
 }

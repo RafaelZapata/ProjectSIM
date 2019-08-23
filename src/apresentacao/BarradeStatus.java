@@ -9,8 +9,8 @@ import javax.swing.JTextField;
 
 public class BarradeStatus extends JPanel
 {
-    private JTextField productField = new JTextField("APLICAÇÃO JAVA COM BANCO DE DADOS - developed by Profª. Giselle Teixeira de Almeida",40);
-    private JTextField rightsField = new JTextField("Copyright (C) 2016 - All Rights Reserved",20);
+    private JTextField productField = new JTextField("APLICAÇÃO JAVA COM BANCO DE DADOS - developed by Diogo Alves e Rafael Zapata",40);
+    private JTextField rightsField = new JTextField("Copyright (C) 2019 - All Rights Reserved",20);
     private JTextField dataField = new JTextField();
     private JTextField clockField = new JTextField();
     private String product;

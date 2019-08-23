@@ -26,7 +26,7 @@ public class CadFuncionarioView extends JFrame{
 		this.setTitle("Tela Vendedor");
 		this.setSize(320,500);
 		this.setLocationRelativeTo(null); 
-		this.setResizable(true);
+		this.setResizable(false);
 		this.setVisible(true);
 		
 		Container container = getContentPane();

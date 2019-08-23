@@ -15,6 +15,10 @@ public class ListaProdutos {
 	private int quantidade;
 	private DMListaProduto dmListaProduto;
 	
+	public ListaProdutos() {
+		
+	}
+	
 	public ListaProdutos(int idVenda) {
 		this.idVenda = idVenda;
 		dmListaProduto = new DMListaProduto();
@@ -31,8 +35,8 @@ public class ListaProdutos {
 	}
 
 	public List<Produto> getListaProdutos(){
-			return dmListaProduto.listarProdutos(this.idVenda);
-		}
+		return dmListaProduto.listarProdutos(this.idVenda);
+	}
 		
 	public int getIdVenda() {
 		return idVenda;

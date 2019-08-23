@@ -16,12 +16,6 @@ public class Cliente extends Pessoa{
 		dmCliente.conectaDatabase();
 	}
 	
-	public Cliente(String cpf) {
-		this.setCpf(cpf);
-		dmCliente = new DMCliente();
-		dmCliente.conectaDatabase();
-	}
-	
 	public Cliente(String nome, String cpf, String telefone, String dataNascimento, Endereco objEndereco) {
 		this.setNome(nome);
 		this.setCpf(cpf);

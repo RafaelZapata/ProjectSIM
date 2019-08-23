@@ -17,7 +17,7 @@ public class BarradeFerramenta
     {   JToolBar BFerramenta = new JToolBar();
         BFerramenta.setFloatable(true);
 
-        Action cClienteAction = new AbstractAction("Cliente", new ImageIcon("../SIM2/src/images/cliente.gif"))
+        Action cClienteAction = new AbstractAction("Cliente", new ImageIcon("../SIM2/src/images/cliente.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCCliente"); }
@@ -29,13 +29,13 @@ public class BarradeFerramenta
             { chamaMetodo(e,"jSobre"); }
         };
         
-        Action cVendedorAction = new AbstractAction("Vendedor", new ImageIcon("../SIM2/src/images/cliente.gif"))
+        Action cVendedorAction = new AbstractAction("Vendedor", new ImageIcon("../SIM2/src/images/funcionario.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCFuncionario"); }
         };
         
-        Action cProdutoAction = new AbstractAction("Produto", new ImageIcon("../SIM2/src/images/exportar.gif"))
+        Action cProdutoAction = new AbstractAction("Produto", new ImageIcon("../SIM2/src/images/produto.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCProduto"); }

@@ -20,7 +20,7 @@ public class BarradeMenu
 
         // Opção do Menu Gerenciamentos 
         // Opção 1 - Cliente
-        JMenuItem menu1Item1 = new JMenuItem("Cliente...",new ImageIcon("../SIM2/src/images/cliente.gif"));
+        JMenuItem menu1Item1 = new JMenuItem("Cliente...",new ImageIcon("../SIM2/src/images/cliente.png"));
         menu1Item1.setFont(new Font ("Arial",Font.PLAIN,11));
         menu1Item1.setMnemonic(KeyEvent.VK_F);
         menu1Item1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,InputEvent.CTRL_MASK));
@@ -31,7 +31,7 @@ public class BarradeMenu
 
         // Opções do Menu Cadastros
         // Opção 2 - Vendedor
-        JMenuItem menu1Item2 = new JMenuItem("Vendedor...",new ImageIcon("../SIM2/src/images/classe.gif"));
+        JMenuItem menu1Item2 = new JMenuItem("Vendedor...",new ImageIcon("../SIM2/src/images/funcionario.png"));
         menu1Item2.setFont(new Font ("Arial",Font.PLAIN,11));
         menu1Item2.setMnemonic(KeyEvent.VK_J);
         menu1Item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J,InputEvent.CTRL_MASK));
@@ -51,7 +51,7 @@ public class BarradeMenu
             { chamaMetodo(e,"jSair"); }
         });
 
-        // Adiciona os itens criados ao Menu Cadastros Bï¿½sicos
+        // Adiciona os itens criados ao Menu Cadastros Básicos
         menu1.add(menu1Item1);  // Item Cadastro Cliente
         menu1.add(menu1Item2);  // Item Cadastro Vendedor
         menu1.addSeparator();   // Separador
@@ -100,12 +100,12 @@ public class BarradeMenu
             metodo.invoke(gui, null);
         }
         catch (NoSuchMethodException nsme)
-        { JOptionPane.showMessageDialog(null, "Metodo nï¿½o definido para este evento/menu - ERR1"); }
+        { JOptionPane.showMessageDialog(null, "Método não definido para este evento/menu - ERR1"); }
         catch (IllegalAccessException iae)
-        {JOptionPane.showMessageDialog(null, "Metodo nï¿½o definido para este evento/menu - ERR2"); }
+        {JOptionPane.showMessageDialog(null, "Método não definido para este evento/menu - ERR2"); }
         catch (InvocationTargetException ite)
         {   ite.getTargetException().printStackTrace();
-            JOptionPane.showMessageDialog(null, "Metodo nï¿½o definido para este evento/menu - ERR3");
+            JOptionPane.showMessageDialog(null, "Método não definido para este evento/menu - ERR3");
         }
     }
 }

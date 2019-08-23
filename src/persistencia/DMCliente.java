@@ -37,11 +37,22 @@ public class DMCliente extends DMGeral{
 	@Override
 	public Object consultar(Object obj) {
 		Cliente objCliente = (Cliente) obj;		
-		
+		String consultarSqlCliente;
+		PreparedStatement pStmt;
 		try {
-			String consultarSqlCliente = "SELECT * FROM Cliente, ClienteEndereco, Endereco WHERE (Cliente.idCliente = ClienteEndereco.FK_Cliente_idCliente) and (ClienteEndereco.FK_Endereco_idEndereco = Endereco.idEndereco) and (Cliente.cpf = (?))";
-			PreparedStatement pStmt  = getConnection().prepareStatement(consultarSqlCliente);
-			pStmt.setString(1, objCliente.getCpf());
+			if(objCliente.getIdCliente() > 0) {
+				consultarSqlCliente = "SELECT * FROM Cliente, ClienteEndereco, Endereco WHERE (Cliente.idCliente = ClienteEndereco.FK_Cliente_idCliente) and (ClienteEndereco.FK_Endereco_idEndereco = Endereco.idEndereco) and (Cliente.idCliente = (?))";
+				pStmt  = getConnection().prepareStatement(consultarSqlCliente);
+				pStmt.setInt(1, objCliente.getIdCliente());
+			}else if ((objCliente.getNome() != null) && (!objCliente.getNome().trim().equals(""))){
+				consultarSqlCliente = "SELECT * FROM Cliente, ClienteEndereco, Endereco WHERE (Cliente.idCliente = ClienteEndereco.FK_Cliente_idCliente) and (ClienteEndereco.FK_Endereco_idEndereco = Endereco.idEndereco) and (Cliente.nome LIKE (?))";
+				pStmt  = getConnection().prepareStatement(consultarSqlCliente);
+				pStmt.setString(1, "%"+objCliente.getNome()+"%");
+			}else {
+				consultarSqlCliente = "SELECT * FROM Cliente, ClienteEndereco, Endereco WHERE (Cliente.idCliente = ClienteEndereco.FK_Cliente_idCliente) and (ClienteEndereco.FK_Endereco_idEndereco = Endereco.idEndereco) and (Cliente.cpf = (?))";
+				pStmt  = getConnection().prepareStatement(consultarSqlCliente);
+				pStmt.setString(1, objCliente.getCpf());
+			}
 			ResultSet result = pStmt.executeQuery();
 			if(result.next()) {
 				Endereco end = new Endereco();
@@ -56,9 +67,9 @@ public class DMCliente extends DMGeral{
 				objCliente.setTelefone(result.getString("telefone"));
 				objCliente.setDataNascimento(result.getString("dataNascimento"));
 				objCliente.setIdCliente(Integer.parseInt(result.getString("idCliente")));
-				
 				result.close();
 			} else {
+				System.out.println("Nada encontrado!");
 				objCliente = null;
 			}
 			pStmt.close();

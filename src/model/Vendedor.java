@@ -8,6 +8,10 @@ public class Vendedor extends Funcionario{
 	
 	private DMVendedor dmVendedor;
 	
+	public Vendedor() {
+		
+	}
+	
 	public Vendedor(String cpf) {
 		this.cpf = cpf;
 		dmVendedor = new DMVendedor();
