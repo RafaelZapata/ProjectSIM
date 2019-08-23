@@ -37,7 +37,7 @@ public class DMVenda extends DMGeral{
 	@Override
 	public Object consultar(Object obj) {
 		Vendas objVenda = (Vendas) obj;
-		String consultarProdutosVenda = "SELECT * FROM Venda WHERE idVenda = (?);";
+		String consultarProdutosVenda = "SELECT * FROM Venda, ListaProdutos WHERE idVenda = (?);";
 		try {
 			PreparedStatement pStmt = getConnection().prepareStatement(consultarProdutosVenda);
 			pStmt.setInt(1, objVenda.getIdVenda());

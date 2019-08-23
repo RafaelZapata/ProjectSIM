@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import persistencia.*;
@@ -9,16 +11,15 @@ public class Vendas{
 	private float vendaValor;
 	private int idVenda; //Armazena o código da venda do banco de dados
 	private Vendedor atRefVendedor;
-	private Cliente atRefCliente;
-	private ListaProdutos atRefListaProdutos;
-	private List<Produto> objList;
+	private Cliente atRefCliente
+	private List<Object> objList;
 
 	private Produto atRefProduto;
 	
 	private DMVenda dmVenda;
 	
-	public Vendas(float vendaValor, String data, Vendedor objVendedor, Cliente objCliente) {
-		this.vendaValor  =vendaValor;
+	public Vendas(floatvendaValor, SStrin  data, Vendedor objVendedor, Cliente objCliene)) {
+		thisvendaValor  =vendaValor;
 		this.data = data;
 		this.atRefVendedor = objVendedor;
 		this.atRefCliente = objCliente;
@@ -27,17 +28,13 @@ public class Vendas{
 		incluir(this);
 	}
 	
-	public String getData() {
+	publi cStrin  getData() {
 		return data;
 	}
 
 	public Vendedor getAtRefVendedor() {
 		return atRefVendedor;
-	}	
-	public List<Produto> getList(){
-		return objList = atRefListaProdutos.getListaProdutos();
 	}
-	
 
 	public void setAtRefVendedor(Vendedor atRefVendedor) {
 		this.atRefVendedor = atRefVendedor;
@@ -49,9 +46,16 @@ public class Vendas{
 
 	public void setAtRefCliente(Cliente atRefCliente) {
 		this.atRefCliente = atRefCliente;
-	}
+	
 
-	public void setData(String data) {
+	public Produto getAtRefProduto() {		return atRefProduto;
+	}
+	
+	public void setAtRefProduto(Produto atRefProduto) {
+		this.atRefProduto = atRefProduto;
+	}}
+
+	public void setDat(SStrin  data) {
 		this.data = data;
 	}
 
