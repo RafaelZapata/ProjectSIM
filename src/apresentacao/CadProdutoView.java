@@ -87,7 +87,7 @@ public class CadProdutoView extends JFrame{
 						if (produto.getIdProduto()>0) {
 							produto.imprimir();
 						} else {
-							JOptionPane.showMessageDialog(null, "Produto n„o encontrado!");
+							JOptionPane.showMessageDialog(null, "Produto n√£o encontrado!");
 						}
 					}
 				}
@@ -98,16 +98,16 @@ public class CadProdutoView extends JFrame{
 					produto = new Produto(Descricao);
 					produto.consultar();
 					if (produto.getIdProduto() > 0) {
-						String[] options = {"Sim", "N„o"};
+						String[] options = {"Sim", "N√£o"};
 						int resultado = JOptionPane.showOptionDialog(null, "Produto encontrado.\nID: "+produto.getIdProduto()+"\nQuantidade: "+produto.getQuantidade()+"\nDescricao: "+produto.getDescricao(), "Excluir Produto", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
 						if (resultado == 0) {
 							produto.excluir();
 							if(produto.consultar() == null) {
-								JOptionPane.showMessageDialog(null, "Produto excluÌdo com sucesso!");
+								JOptionPane.showMessageDialog(null, "Produto exclu√≠do com sucesso!");
 							}
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Produto n„o encontrado!");
+						JOptionPane.showMessageDialog(null, "Produto n√£o encontrado!");
 					}		
 				}
 				
@@ -119,7 +119,7 @@ public class CadProdutoView extends JFrame{
 		}
 				
 		
-		//adicionando ouvinte para os bot√µes
+		//adicionando ouvinte para os bot√É¬µes
 		BatSinal batman = new BatSinal();
 		btnSalvar.addMouseListener(batman);
 		btnListar.addMouseListener(batman);
@@ -127,8 +127,11 @@ public class CadProdutoView extends JFrame{
 		btnLimpar.addMouseListener(batman);
 		btnExcluir.addMouseListener(batman);
 		
-		//Adicionando botıes ao painel
-		panel.add(btnSalvar);		panel.add(btnListar);
+		//Adicionando bot√µes ao painel
+		panel.add(btnSalvar);
+		
+		panel.add(btnListar);
+		
 		panel.add(btnFechar);
 		panel.add(btnLimpar);
 		panel.add(btnExcluir);
