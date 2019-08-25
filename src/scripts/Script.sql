@@ -22,6 +22,7 @@ CREATE TABLE Venda (
     idVenda INT PRIMARY KEY auto_increment,
     vendaValor FLOAT,
     dataVenda varchar(10),
+    status boolean,
     FK_Cliente_idCliente INT,
     FK_Vendedor_idVendedor INT
 );
@@ -76,6 +77,22 @@ ALTER TABLE ClienteEndereco ADD CONSTRAINT FK_ClienteEndereco_0
 ALTER TABLE ClienteEndereco ADD CONSTRAINT FK_ClienteEndereco_1
     FOREIGN KEY (FK_Endereco_idEndereco)
     REFERENCES Endereco (idEndereco);
+    
+-- TRIGGER
+DELIMITER $$
 
-CREATE USER 'adm'@'localhost' IDENTIFIED BY 'adm';
+CREATE TRIGGER atualizarQuantidade AFTER INSERT
+ON ListaProdutos FOR EACH ROW
+BEGIN
+	DECLARE quantidadeVendida INT;
+	DECLARE idProdutoVendido INT;
+    
+	set quantidadeVendida = NEW.quantidade;
+    set idProdutoVendido =  NEW.FK_Produto_idProduto;
+    
+    UPDATE Produto SET Produto.quantidade = Produto.quantidade - quantidadeVendida WHERE idProdutoVendido = Produto.idProduto;
+END;
+$$
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin';
 GRANT ALL ON bd_sim.* TO adm@localhost;

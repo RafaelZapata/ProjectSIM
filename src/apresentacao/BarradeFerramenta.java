@@ -16,38 +16,46 @@ public class BarradeFerramenta
     public JToolBar make()
     {   JToolBar BFerramenta = new JToolBar();
         BFerramenta.setFloatable(true);
+        
+        Action cVendasAction = new AbstractAction("Vendas", new ImageIcon("../ProjectSIM/src/images/cliente.png"))
+        {	private static final long serialVersionUID = 1L;
+        	public void actionPerformed(ActionEvent e)
+            { chamaMetodo(e,"jCVendas"); }
+        };
 
-        Action cClienteAction = new AbstractAction("Cliente", new ImageIcon("../SIM2/src/images/cliente.png"))
+
+        Action cClienteAction = new AbstractAction("Cliente", new ImageIcon("../ProjectSIM/src/images/cliente.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCCliente"); }
         };
 
-        Action cAjudaAction = new AbstractAction("Ajuda", new ImageIcon("../SIM2/src/images/ajuda.gif"))
+        Action cAjudaAction = new AbstractAction("Ajuda", new ImageIcon("../ProjectSIM/src/images/ajuda.gif"))
         { 	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jSobre"); }
         };
         
-        Action cVendedorAction = new AbstractAction("Vendedor", new ImageIcon("../SIM2/src/images/funcionario.png"))
+        Action cVendedorAction = new AbstractAction("Vendedor", new ImageIcon("../ProjectSIM/src/images/funcionario.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCFuncionario"); }
         };
         
-        Action cProdutoAction = new AbstractAction("Produto", new ImageIcon("../SIM2/src/images/produto.png"))
+        Action cProdutoAction = new AbstractAction("Produto", new ImageIcon("../ProjectSIM/src/images/produto.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCProduto"); }
         };
 
-        Action exitAction = new AbstractAction("Sair", new ImageIcon("../SIM2/src/images/sair.gif"))
+        Action exitAction = new AbstractAction("Sair", new ImageIcon("../ProjectSIM/src/images/sair.gif"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jSair"); }
         };
 
         // Cria os bot�es na Barra de Ferramentas
+        ToolButton cVendas  = new ToolButton(cVendasAction);
         ToolButton cCliente  = new ToolButton(cClienteAction);
         ToolButton cVendedor = new ToolButton(cVendedorAction);
         ToolButton cProduto = new ToolButton(cProdutoAction);
@@ -55,6 +63,7 @@ public class BarradeFerramenta
         ToolButton cExit = new ToolButton(exitAction);
 
         // Adiciona os bot�es na Barra de Ferramentas
+        BFerramenta.add(cVendas);
         BFerramenta.add(cCliente);
         BFerramenta.add(cVendedor);
         BFerramenta.add(cProduto);

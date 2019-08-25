@@ -16,6 +16,12 @@ public class Cliente extends Pessoa{
 		dmCliente.conectaDatabase();
 	}
 	
+	public Cliente(int idCliente) {
+		this.id = idCliente;
+		dmCliente = new DMCliente();
+		dmCliente.conectaDatabase();
+	}
+	
 	public Cliente(String nome, String cpf, String telefone, String dataNascimento, Endereco objEndereco) {
 		this.setNome(nome);
 		this.setCpf(cpf);
@@ -24,7 +30,7 @@ public class Cliente extends Pessoa{
 		this.atRefEndereco = objEndereco;
 		dmCliente = new DMCliente();
 		dmCliente.conectaDatabase();
-		incluir(this);
+		incluir();
 		
 	}
 	
@@ -76,8 +82,8 @@ public class Cliente extends Pessoa{
 		return dmCliente.consultar(this);
 	}
 	
-	public void incluir(Cliente objCliente) {
-		if(objCliente.cpf.equals("")) {
+	public void incluir() {
+		if(this.cpf.equals("")) {
 			JOptionPane.showMessageDialog(null, "CPF Obrigatório!");
 		} else {
 			if(dmCliente.consultar(this)!=null) {

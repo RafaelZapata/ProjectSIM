@@ -1,9 +1,5 @@
 package model;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,8 +11,11 @@ public class ListaProdutos {
 	private int quantidade;
 	private DMListaProduto dmListaProduto;
 	
+	//Métodos construtores//
+	
 	public ListaProdutos() {
-		
+		dmListaProduto = new DMListaProduto();
+		dmListaProduto.conectaDatabase();
 	}
 	
 	public ListaProdutos(int idVenda) {
@@ -31,10 +30,22 @@ public class ListaProdutos {
 		this.quantidade = quantidade;
 		dmListaProduto = new DMListaProduto();
 		dmListaProduto.conectaDatabase();
-		dmListaProduto.incluir(this);
+		this.incluir();
+	}
+	
+	public ListaProdutos(int idProduto, int quantidade) {
+		this.idProduto = idProduto;
+		this.quantidade = quantidade;
+		dmListaProduto = new DMListaProduto();
+		dmListaProduto.conectaDatabase();
 	}
 
-	public List<Produto> getListaProdutos(){
+	//----------------------------------------------//
+	
+	
+	//Set e Get//
+	
+	public List<ListaProdutos> getListaProdutos(){
 		return dmListaProduto.listarProdutos(this.idVenda);
 	}
 		
@@ -62,16 +73,18 @@ public class ListaProdutos {
 		this.quantidade = quantidade;
 	}
 	
+	//----------------------------------------------//
+	
+	//Funções//
+	
 	public Object consultar() {
 		return dmListaProduto.consultar(this);
 	}
 	
 	public void incluir() {
-		dmListaProduto = new DMListaProduto();
+		dmListaProduto.incluir(this);
 		
 	}
 	
-	public void excluir() {
-		
-	}
+	//----------------------------------------------//
 }
