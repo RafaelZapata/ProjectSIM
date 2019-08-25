@@ -4,20 +4,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-
-
+import javax.swing.JOptionPane;
 import model.ListaProdutos;
-import model.Produto;
 
 public class DMListaProduto extends DMGeral{
 
 	@Override
 	public void incluir(Object obj) {
 		ListaProdutos objListaProdutos = (ListaProdutos) obj;
-		String incluirSqlListaProdutos = "INSERT INTO ListaProdutos (quantidade, FK_Venda_idVenda, FK_Produto_idProduto) VALUES (?, ?)";
+		String incluirSqlListaProdutos = "INSERT INTO ListaProdutos (quantidade, FK_Venda_idVenda, FK_Produto_idProduto) VALUES (?, ?, ?)";
 		try {
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlListaProdutos);
 			pStmt.setInt(1, objListaProdutos.getQuantidade());
@@ -27,6 +24,7 @@ public class DMListaProduto extends DMGeral{
 			
 			pStmt.close();
 		} catch (SQLException e) {
+			System.out.println("Falha DMListaProdutos!");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
@@ -43,6 +41,7 @@ public class DMListaProduto extends DMGeral{
 			pStmt.setInt(1, objListaProdutos.getIdProduto());
 			ResultSet result = pStmt.executeQuery();
 			if(result.next()) {
+				//
 				result.close();
 			} else {
 				objListaProdutos = null;
@@ -56,22 +55,19 @@ public class DMListaProduto extends DMGeral{
 		return objListaProdutos;
 	}
 	
-	public List<Produto> listarProdutos(int id){
+	public List<ListaProdutos> listarProdutos(int id){
 		
-		List<Produto> produtos = new ArrayList<Produto>();
-		Produto pro = new Produto();
-		pro.conecta();
+		List<ListaProdutos> produtos = null;
 		try {
-			String consultarSqlProduto = "SELECT * FROM Produto WHERE FK_Venda_idVenda = "+id+";";
+			String consultarSqlProduto = "SELECT * FROM ListaProdutos WHERE FK_Venda_idVenda = "+id+";";
 			Statement stmt = getConnection().createStatement();
 			ResultSet result = stmt.executeQuery(consultarSqlProduto);
 			while(result.next()) {
-				pro.setIdProduto(Integer.parseInt(result.getString("idProduto")));
-				pro.setDescricao(result.getString("descricao"));
-				pro.setQuantidade(Integer.parseInt(result.getString("quantidade")));
-				pro.setValor(Float.parseFloat(result.getString("valor")));
-				produtos.add(pro);
+				ListaProdutos lp = new ListaProdutos(result.getInt("FK_Venda_idVenda"),result.getInt("FK_Venda_idProduto"), result.getInt("quantidade"));
+				produtos.add(lp);
+				lp = null;
 			}
+			
 			result.close();
 			stmt.close();
 		} catch (SQLException e) {
