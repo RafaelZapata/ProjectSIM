@@ -38,11 +38,19 @@ public class DMProduto extends DMGeral {
 	@Override
 	public Object consultar(Object obj) {
 		Produto objProduto = (Produto) obj;
-		
+		String consultarSqlProduto = "";
+		PreparedStatement pStmt;
 		try {
-			String consultarSqlProduto = "SELECT * FROM Produto where (descricao = (?))";
-			PreparedStatement pStmt = getConnection().prepareStatement(consultarSqlProduto);
-			pStmt.setString(1, objProduto.getDescricao());
+			if(objProduto.getIdProduto()>0) {
+				consultarSqlProduto = "SELECT * FROM Produto WHERE (idProduto = (?))";
+				pStmt = getConnection().prepareStatement(consultarSqlProduto);
+				pStmt.setInt(1, objProduto.getIdProduto());
+			}else {
+				consultarSqlProduto = "SELECT * FROM Produto where (descricao = (?))";
+				pStmt = getConnection().prepareStatement(consultarSqlProduto);
+				pStmt.setString(1, objProduto.getDescricao());
+			}
+
 			ResultSet result = pStmt.executeQuery();
 			if(result.next()) {
 				objProduto.setIdProduto(Integer.parseInt(result.getString("idProduto")));
@@ -73,6 +81,7 @@ public class DMProduto extends DMGeral {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	public void listarProdutos() {
 		String relatorio = "Relatório Geral dos Produtos: \n";
 		Produto pro;

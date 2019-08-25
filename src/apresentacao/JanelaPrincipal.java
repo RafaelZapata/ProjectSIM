@@ -35,7 +35,7 @@ public class JanelaPrincipal extends JFrame
         screenWidth = d.width;
         this.setSize(screenWidth,screenHeight);
         this.setResizable(false);
-        Image img = tk.getImage("../SIM2/src/images/executar.gif");
+        Image img = tk.getImage("../ProjectSIM/src/images/executar.gif");
         this.setIconImage(img);
         this.addWindowListener(new WindowAdapter()
         { public void windowClosing(WindowEvent e)
@@ -43,7 +43,7 @@ public class JanelaPrincipal extends JFrame
         });
 
         //Imagem fundo
-        wallpaper = Toolkit.getDefaultToolkit().createImage("../SIM2/src/images/background5.jpg");
+        wallpaper = Toolkit.getDefaultToolkit().createImage("../ProjectSIM/src/images/background5.jpg");
         JPanel fundo = new NewContentPane();
         
         Container contentPane = getContentPane();
@@ -99,7 +99,7 @@ public class JanelaPrincipal extends JFrame
 
 // M�todo Janela Nova Venda    
     public void jCVendas()
-    {   }
+    {  CadVendaView objTCV = new CadVendaView(); }
     
 // M�todo Janela Sobre
    public void jSobre()

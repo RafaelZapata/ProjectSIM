@@ -13,11 +13,16 @@ public class Vendedor extends Funcionario{
 		dmVendedor.conectaDatabase();
 	}
 	
+	public Vendedor(int idVendedor) {
+		this.id = idVendedor;
+		dmVendedor = new DMVendedor();
+		dmVendedor.conectaDatabase();
+	}
+	
 	public Vendedor(String cpf) {
 		this.cpf = cpf;
 		dmVendedor = new DMVendedor();
 		dmVendedor.conectaDatabase();
-		
 	}
 	
 	public Vendedor(String nome, String cpf, float salario, String dataAdmissao) {

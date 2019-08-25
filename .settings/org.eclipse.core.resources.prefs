@@ -2,4 +2,6 @@ eclipse.preferences.version=1
 encoding//src/apresentacao/CadClientView.java=Cp1252
 encoding//src/apresentacao/CadFuncionarioView.java=Cp1252
 encoding//src/apresentacao/CadProdutoView.java=Cp1252
+encoding//src/apresentacao/CadVendaView.java=Cp1252
+encoding//src/apresentacao/CadVendaViewIncluir.java=Cp1252
 encoding//src/apresentacao/Teste.java=Cp1252

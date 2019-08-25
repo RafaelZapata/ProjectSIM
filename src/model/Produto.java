@@ -14,6 +14,13 @@ public class Produto {
 	
 	public Produto() {}
 	
+	public Produto(int idProduto) {
+		this.idProduto = idProduto;
+		dmProduto = new DMProduto();
+		dmProduto.conectaDatabase();
+	}
+	
+	
 	public Produto(String descricao) {
 		this.descricao = descricao;
 		dmProduto = new DMProduto();
