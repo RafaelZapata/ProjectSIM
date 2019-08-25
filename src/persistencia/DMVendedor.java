@@ -15,7 +15,7 @@ public class DMVendedor extends DMGeral{
 	public void incluir(Object obj) {
 		Vendedor objVendedor = (Vendedor) obj;
 		
-		String incluirSqlVendedor = "INSERT INTO vendedor (cpf, nome, dataAdmissao, salario) VALUES (?, ?, ?, ?)";
+		String incluirSqlVendedor = "INSERT INTO Vendedor (cpf, nome, dataAdmissao, salario) VALUES (?, ?, ?, ?)";
 		try {
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlVendedor, Statement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, objVendedor.getCpf());
@@ -40,11 +40,22 @@ public class DMVendedor extends DMGeral{
 	@Override
 	public Object consultar(Object obj) {
 		Vendedor objVendedor = (Vendedor) obj;
-		
-		String consultarSqlVendedor = "SELECT * FROM vendedor WHERE (cpf = (?))";
+		String consultarSqlVendedor;
+		PreparedStatement pStmt;
 		try {
-			PreparedStatement pStmt = getConnection().prepareStatement(consultarSqlVendedor);
-			pStmt.setString(1, objVendedor.getCpf());
+			if(objVendedor.getIdVendedor() > 0) {
+				consultarSqlVendedor = "SELECT * FROM Vendedor WHERE (Vendedor.idVendedor = (?))";
+				pStmt  = getConnection().prepareStatement(consultarSqlVendedor);
+				pStmt.setInt(1, objVendedor.getIdVendedor());
+			}else if ((objVendedor.getNome() != null) && (!objVendedor.getNome().trim().equals(""))){
+				consultarSqlVendedor = "SELECT * FROM Vendedor WHERE (Vendedor.nome LIKE (?))";
+				pStmt  = getConnection().prepareStatement(consultarSqlVendedor);
+				pStmt.setString(1, "%"+objVendedor.getNome()+"%");
+			}else {
+				consultarSqlVendedor = "SELECT * FROM Vendedor WHERE (Vendedor.cpf = (?))";
+				pStmt  = getConnection().prepareStatement(consultarSqlVendedor);
+				pStmt.setString(1, objVendedor.getCpf());
+			}
 			ResultSet result = pStmt.executeQuery();
 			if(result.next()) {
 				objVendedor.setId( Integer.parseInt(result.getString("idVendedor")));

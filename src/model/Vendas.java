@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,27 +7,27 @@ import persistencia.*;
 
 public class Vendas{
 	private String data;
-	private float vendaValor;
-	private int idVenda; //Armazena o cÃ³digo da venda do banco de dados
+	private float valorVenda;
+	private int idVenda; //Armazena o código da venda do banco de dados
 	private Vendedor atRefVendedor;
-	private Cliente atRefCliente
-	private List<Object> objList;
-
-	private Produto atRefProduto;
+	private Cliente atRefCliente;
+	private ListaProdutos atRefListaProdutos;
+	private List<Produto> list;
 	
 	private DMVenda dmVenda;
 	
-	public Vendas(floatvendaValor, SStrin  data, Vendedor objVendedor, Cliente objCliene)) {
-		thisvendaValor  =vendaValor;
+	public Vendas(float valorVenda, String data, Vendedor objVendedor, Cliente objCliente) {
+		this.valorVenda = valorVenda;
 		this.data = data;
 		this.atRefVendedor = objVendedor;
 		this.atRefCliente = objCliente;
+		list = atRefListaProdutos.getListaProdutos();
 		dmVenda = new DMVenda();
 		dmVenda.conectaDatabase();
 		incluir(this);
 	}
 	
-	publi cStrin  getData() {
+	public String getData() {
 		return data;
 	}
 
@@ -46,17 +45,18 @@ public class Vendas{
 
 	public void setAtRefCliente(Cliente atRefCliente) {
 		this.atRefCliente = atRefCliente;
-	
-
-	public Produto getAtRefProduto() {		return atRefProduto;
 	}
-	
-	public void setAtRefProduto(Produto atRefProduto) {
-		this.atRefProduto = atRefProduto;
-	}}
 
-	public void setDat(SStrin  data) {
+	public void setData(String data) {
 		this.data = data;
+	}
+
+	public float getValorVenda() {
+		return valorVenda;
+	}
+
+	public void setValorVenda(float valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 
 	public int getIdVenda() {
@@ -67,15 +67,7 @@ public class Vendas{
 		this.idVenda = idVenda;
 	}
 	
-public float getVendaValor() {
-		return vendaValor;
-	}
-
-	public void setVendaValor(float vendaValor) {
-		this.vendaValor = vendaValor;
-	}
-
-		public Object consultar() {
+	public Object consultar() {
 		return dmVenda.consultar(this);
 	}
 	
@@ -84,3 +76,4 @@ public float getVendaValor() {
 	}
 	
 }
+

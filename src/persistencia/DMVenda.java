@@ -16,7 +16,7 @@ public class DMVenda extends DMGeral{
 			String incluirSqlVenda = "INSERT INTO Venda (vendaValor, dataVenda, FK_Cliente_idCliente, FK_Vendedor_idVendedor)"
 					+ "VALUES (?, ?, ?, ?)";
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlVenda, Statement.RETURN_GENERATED_KEYS);
-			pStmt.setFloat(1, objVenda.getVendaValor());
+			pStmt.setFloat(1, objVenda.getValorVenda());
 			pStmt.setString(2, objVenda.getData());
 			pStmt.setInt(3, objVenda.getAtRefCliente().getIdCliente());
 			pStmt.setInt(4, objVenda.getAtRefVendedor().getIdVendedor());

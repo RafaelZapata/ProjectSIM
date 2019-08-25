@@ -244,6 +244,17 @@ public class CadClientView extends JFrame{
 					cliente = new Cliente(nome, cpf, telefone, dataNascimento, endereco);		
 					
 					ClienteEndereco clienteEndereco = new ClienteEndereco(cliente, endereco);
+					
+					//Executar o botao limpar - Mas como não está funcionando, vamos apenas colar o codigo
+					jTextFieldCpf.setText(""); 
+					jTextFieldNome.setText(""); 
+					jTextFieldDataNascimento.setText(""); 
+					jTextFieldRua.setText(""); 
+					jTextFieldTelefone.setText(""); 
+					jTextFieldNumero.setText(""); 
+					jTextFieldBairro.setText(""); 
+					jTextFieldCidade.setText(""); 
+					jTextFieldEstado.setText("");
 				}
 					
 				if (e.getSource() == btnLimpar) {				

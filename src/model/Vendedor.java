@@ -9,7 +9,8 @@ public class Vendedor extends Funcionario{
 	private DMVendedor dmVendedor;
 	
 	public Vendedor() {
-		
+		dmVendedor = new DMVendedor();
+		dmVendedor.conectaDatabase();
 	}
 	
 	public Vendedor(String cpf) {
@@ -66,7 +67,7 @@ public class Vendedor extends Funcionario{
 				JOptionPane.showMessageDialog(null, "Já existe um vendedor cadastrado nesse cpf");
 			} else {
 				dmVendedor.incluir(objVendedor);
-				JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!!");
+				JOptionPane.showMessageDialog(null, "Cadastrado com suceso!!");
 			}
 		}
 	}
