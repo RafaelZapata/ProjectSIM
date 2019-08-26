@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
@@ -98,5 +99,24 @@ public class DMVenda extends DMGeral{
 			JOptionPane.showMessageDialog(null, "Erro ao cancelar no banco de dados!");
 			e.printStackTrace();
 		}
+	}
+	
+	public Vector<Integer> getListaProdutosDisponiveis() {
+		Vector<Integer> lista = new Vector<Integer>();
+		try {
+			System.out.println("Buscando lista de produtos disponíveis...");
+			String consultarSqlLista = "SELECT * FROM Produto";
+			Statement stmt = getConnection().createStatement();
+			ResultSet result = stmt.executeQuery(consultarSqlLista);
+			while(result.next()) {
+				lista.add(result.getInt("idProduto"));
+			}
+			result.close();
+			stmt.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lista;
 	}
 }

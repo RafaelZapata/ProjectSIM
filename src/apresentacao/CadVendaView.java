@@ -22,70 +22,73 @@ public class CadVendaView extends JFrame{
 	
 	public CadVendaView() {
 		this.setTitle("Venda");
-		this.setSize(600,520);
+		this.setSize(600,360);
 		this.setLocationRelativeTo(null); 
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setLayout(null);
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage("../ProjectSIM/src/images/loja.png");
+	    this.setIconImage(img);
 		
 		Container container = getContentPane();
 		
 		JPanel pIncluir = new JPanel();
-		pIncluir.setSize(565,200);
+		pIncluir.setSize(565,100);
 		pIncluir.setLocation(10,10); 
 		pIncluir.setBorder(BorderFactory.createTitledBorder(" NOVA VENDA "));
 		pIncluir.setLayout(null);
 		container.add(pIncluir);
 		
 		JPanel pListar = new JPanel();
-		pListar.setSize(565,150);
-		pListar.setLocation(10,220); 
+		pListar.setSize(565,60);
+		pListar.setLocation(10,120); 
 		pListar.setBorder(BorderFactory.createTitledBorder(" PESQUISAR "));
 		pListar.setLayout(null);
 		container.add(pListar);
 		
 		JPanel pCancelar = new JPanel();
 		pCancelar.setSize(565,60);
-		pCancelar.setLocation(10,380); 
+		pCancelar.setLocation(10, 200); 
 		pCancelar.setBorder(BorderFactory.createTitledBorder(" CANCELAR VENDA "));
 		pCancelar.setLayout(null);
 		container.add(pCancelar);
 		
 		JPanel panel = new JPanel();
 		panel.setSize(90,50);
-		panel.setLocation(490,440); 
+		panel.setLocation(490,280); 
 		container.add(panel);
 		
 		//Entradas de inclusao
-		jLabelidVendedor = new JLabel("idVendedor: ");
-		jLabelidVendedor.setSize(35, 20);
+		jLabelidVendedor = new JLabel("Id do Vendedor: ");
+		jLabelidVendedor.setSize(100, 20);
 		jLabelidVendedor.setLocation(10, 20);
 		
 		jTextFieldidVendedor = new JTextField(12); 
-		jTextFieldidVendedor.setSize(155, 20);
-		jTextFieldidVendedor.setLocation(40, 23);
+		jTextFieldidVendedor.setSize(40, 20);
+		jTextFieldidVendedor.setLocation(105, 23);
 		
 		pIncluir.add(jLabelidVendedor);
 		pIncluir.add(jTextFieldidVendedor);
 		
-		jLabelidCliente = new JLabel("idCliente: ");
-		jLabelidCliente.setSize(50, 20);
-		jLabelidCliente.setLocation(210, 20);
+		jLabelidCliente = new JLabel("Id do Cliente: ");
+		jLabelidCliente.setSize(80, 20);
+		jLabelidCliente.setLocation(160, 20);
 		
 		jTextFieldidCliente= new JTextField();
-		jTextFieldidCliente.setSize(250, 20);
-		jTextFieldidCliente.setLocation(255, 23);
+		jTextFieldidCliente.setSize(40, 20);
+		jTextFieldidCliente.setLocation(240, 23);
 		
 		pIncluir.add(jLabelidCliente);
 		pIncluir.add(jTextFieldidCliente);
 		
 		jLabelData = new JLabel("Data: ");
-		jLabelData.setSize(110, 20);
+		jLabelData.setSize(40, 20);
 		jLabelData.setLocation(10, 50);
 		
 		jTextFieldData = new JTextField(50);
 		jTextFieldData.setSize(80, 20);
-		jTextFieldData.setLocation(115, 53);
+		jTextFieldData.setLocation(45, 53);
 		jTextFieldData.setText("dd-mm-aaaa");
 		
 		pIncluir.add(jLabelData);
@@ -93,44 +96,43 @@ public class CadVendaView extends JFrame{
 		
 		btnIniciar = new JButton("Iniciar");
 		btnIniciar.setSize(80, 25);
-		btnIniciar.setLocation(370, 150);
+		btnIniciar.setLocation(380, 65);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setSize(80, 25);
-		btnLimpar.setLocation(455, 150);
+		btnLimpar.setLocation(465, 65);
 		
 		//Entradas da tela de pesquisar
-		jLabelIdListar = new JLabel("Id: ");
-		jLabelIdListar.setSize(35, 20);
+		jLabelIdListar = new JLabel("Id da Venda: ");
+		jLabelIdListar.setSize(75, 20);
 		jLabelIdListar.setLocation(10, 20);
 		
 		jTextFieldIdListar = new JTextField(12); 
-		jTextFieldIdListar.setSize(50, 20);
-		jTextFieldIdListar.setLocation(40, 23);
+		jTextFieldIdListar.setSize(40, 20);
+		jTextFieldIdListar.setLocation(90, 23);
 		
 		pListar.add(jLabelIdListar);
 		pListar.add(jTextFieldIdListar);
 		
-		
 		btnListar= new JButton("Listar");
 		btnListar.setSize(80, 25);
-		btnListar.setLocation(455, 110);
+		btnListar.setLocation(465, 20);
 		
 		//Entradas da tela Cancelar
-		jLabelidVendaCancelar = new JLabel("idVendedor: ");
-		jLabelidVendaCancelar.setSize(35, 20);
+		jLabelidVendaCancelar = new JLabel("Id da Venda: ");
+		jLabelidVendaCancelar.setSize(80, 20);
 		jLabelidVendaCancelar.setLocation(10, 20);
 		
 		jTextFieldidVendaCancelar = new JTextField(12); 
-		jTextFieldidVendaCancelar.setSize(155, 20);
-		jTextFieldidVendaCancelar.setLocation(40, 23);
+		jTextFieldidVendaCancelar.setSize(40, 20);
+		jTextFieldidVendaCancelar.setLocation(90, 23);
 		
 		pCancelar.add(jLabelidVendaCancelar);
 		pCancelar.add(jTextFieldidVendaCancelar);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setSize(80, 25);
-		btnCancelar.setLocation(455, 20);
+		btnCancelar.setSize(85, 25);
+		btnCancelar.setLocation(460, 20);
 		
 		btnFechar = new JButton("Fechar");
 		
@@ -143,11 +145,16 @@ public class CadVendaView extends JFrame{
 					idCliente = Integer.parseInt(jTextFieldidCliente.getText());
 					Cliente cliente = new Cliente(idCliente);
 					cliente.consultar();
+					Vendedor vendedor = new Vendedor(idVendedor);
+					vendedor.consultar();
 					if(cliente.getCpf() == null){
 						JOptionPane.showMessageDialog(null, "Cliente não cadastrado!");
+					}else if (vendedor.getCpf() == null){
+						JOptionPane.showMessageDialog(null, "Vendedor não cadastrado!");
 					}else {
 						data = jTextFieldData.getText();		
 						vendas = new Vendas(idCliente, idVendedor, data);
+						@SuppressWarnings("unused")
 						CadVendaViewIncluir cv = new CadVendaViewIncluir(vendas);
 						
 						//Executar o botao limpar - Mas como não está funcionando, vamos apenas colar o codigo
@@ -169,13 +176,11 @@ public class CadVendaView extends JFrame{
 					vendas = new Vendas();
 					idVenda = Integer.parseInt(jTextFieldIdListar.getText());
 					vendas.setIdVenda(idVenda);
-					System.out.println("Instanciou o vendas!");
 					vendas.consultar();
-					System.out.println("Realizou a consulta!");
-					if (vendas.getIdVenda() > 0) {
+					if (vendas.getValorVenda() > 0) {
 						vendas.imprimir();
 					} else {
-						JOptionPane.showMessageDialog(null, "Venda não encontrado!");
+						JOptionPane.showMessageDialog(null, "Venda não encontrada!");
 					}		
 				}
 				

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Clock extends JPanel implements Runnable
 {
-    Font font = new Font("DS-Digital",Font.BOLD,25);
+    Font font = new Font("DS-Digital",Font.BOLD,18);
     
     Graphics g;
     Date the_Date;
@@ -14,7 +14,7 @@ public class Clock extends JPanel implements Runnable
     String hora_final;
 
     public Clock()
-    {   this.setSize(100,25);
+    {   this.setSize(125,50);
         start();
         g = getGraphics();
         the_Date = new Date();

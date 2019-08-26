@@ -9,17 +9,18 @@ public class BarradeMenu
 {
     Object gui;
 
-    public JMenuBar make()
+    @SuppressWarnings("deprecation")
+	public JMenuBar make()
     {           
         JMenuBar BMenu = new JMenuBar();
 
         // Cria o Menu Gerenciamentos na Barra de Menu
         JMenu menu1 = new JMenu("Cadastros");
         menu1.setMnemonic(KeyEvent.VK_G); // Sublinha a letra C do Menu Cadastros 
-        menu1.setFont(new Font ("Arial",Font.PLAIN,11));
+        menu1.setFont(new Font ("Arial",Font.PLAIN,12));
 
         // Opção do Menu Gerenciamentos 
-        JMenuItem menu1Item0 = new JMenuItem("Vendas...",new ImageIcon("../ProjectProjectSIM/src/images/cliente.png"));
+        JMenuItem menu1Item0 = new JMenuItem("Vendas...",new ImageIcon("../ProjectSIM/src/images/loja.png"));
         menu1Item0.setFont(new Font ("Arial",Font.PLAIN,11));
         menu1Item0.setMnemonic(KeyEvent.VK_F);
         menu1Item0.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,InputEvent.CTRL_MASK));
@@ -51,7 +52,7 @@ public class BarradeMenu
  
         // Opções do Menu Cadastros Básicos
         // Opção 3 - Sair
-        JMenuItem menu1Item3 = new JMenuItem("Sair",new ImageIcon("../ProjectSIM/src/images/sair.gif"));
+        JMenuItem menu1Item3 = new JMenuItem("Sair",new ImageIcon("../ProjectSIM/src/images/sair.png"));
         menu1Item3.setFont(new Font ("Arial",Font.PLAIN,11));
         menu1Item3.setMnemonic(KeyEvent.VK_S);
         menu1Item3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,InputEvent.CTRL_MASK));
@@ -105,8 +106,8 @@ public class BarradeMenu
 
     private void chamaMetodo(ActionEvent e, String xMetodo)
     {   Method metodo;
-        try
-        {   metodo = gui.getClass().getMethod(xMetodo, null);
+        try{   
+        	metodo = gui.getClass().getMethod(xMetodo, null);
             metodo.invoke(gui, null);
         }
         catch (NoSuchMethodException nsme)

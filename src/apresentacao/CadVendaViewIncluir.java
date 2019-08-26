@@ -19,16 +19,19 @@ public class CadVendaViewIncluir extends JFrame{
 	
 	public CadVendaViewIncluir(Vendas venda) {
 		this.setTitle("Carrinho");
-		this.setSize(600,300);
+		this.setSize(600,215);
 		this.setLocationRelativeTo(null); 
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setLayout(null);
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage("../ProjectSIM/src/images/carrinho.png");
+	    this.setIconImage(img);
 		
 		Container container = getContentPane();
 		
 		JPanel pIncluir = new JPanel();
-		pIncluir.setSize(565,250);
+		pIncluir.setSize(565,150);
 		pIncluir.setLocation(10,10); 
 		pIncluir.setBorder(BorderFactory.createTitledBorder(" ADICIONAR PRODUTOS "));
 		pIncluir.setLayout(null);
@@ -60,23 +63,23 @@ public class CadVendaViewIncluir extends JFrame{
 		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setSize(80, 25);
-		btnSalvar.setLocation(10, 100);
+		btnSalvar.setLocation(10, 110);
 		
 		btnIncluir = new JButton("Incluir");
 		btnIncluir.setSize(80, 25);
-		btnIncluir.setLocation(100, 100);
+		btnIncluir.setLocation(100, 110);
 		
 		btnRemover = new JButton("Remover");
-		btnRemover.setSize(80, 25);
-		btnRemover.setLocation(200, 100);
+		btnRemover.setSize(85, 25);
+		btnRemover.setLocation(200, 110);
 		
 		btnListar= new JButton("Listar");
 		btnListar.setSize(80, 25);
-		btnListar.setLocation(300, 100);
+		btnListar.setLocation(300, 110);
 
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setSize(80, 25);
-		btnCancelar.setLocation(400, 100);	
+		btnCancelar.setSize(85, 25);
+		btnCancelar.setLocation(400, 110);	
 		
 		class BatSinal extends MouseAdapter {
 			public void mouseClicked(MouseEvent e) {
@@ -90,8 +93,9 @@ public class CadVendaViewIncluir extends JFrame{
 				if (e.getSource() == btnIncluir) {
 					id = Integer.parseInt(jTextFieldidProduto.getText());
 					quantidade = Integer.parseInt(jTextFieldQuantidade.getText());
-					venda.addProduto(id, quantidade);
-					JOptionPane.showMessageDialog(null, "Produto incluido com sucesso!");
+					if(venda.addProduto(id, quantidade)) {
+						JOptionPane.showMessageDialog(null, "Produto incluido com sucesso!");						
+					}else JOptionPane.showMessageDialog(null, "Falha ao inserir.");
 					
 					//Executar o botao limpar - Mas como não está funcionando, vamos apenas colar o codigo
 					jTextFieldidProduto.setText(""); 
@@ -117,6 +121,7 @@ public class CadVendaViewIncluir extends JFrame{
 							pro.setQuantidade(lp.getQuantidade());
 							relatorio += pro.toString();
 						}
+						@SuppressWarnings("unused")
 						RelatorioProdutos rp = new RelatorioProdutos(relatorio);
 					}else {
 						JOptionPane.showMessageDialog(null, "Não há produtos no carrinho!");

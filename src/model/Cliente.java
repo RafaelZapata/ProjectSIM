@@ -102,7 +102,7 @@ public class Cliente extends Pessoa{
 	public void imprimir() {
 		JOptionPane.showMessageDialog(null, "Nome: "+this.getNome() + "\nCpf: "+this.getCpf()+ "\nData Nascimento:" + this.getDataNascimento()+ "\nTelefone: " + this.getTelefone()+"\nRua: "+this.getAtRefEndereco().getRua() + "\nNumero: "+this.getAtRefEndereco().getNumeroResidencia()+ "\nBairro:" + this.getAtRefEndereco().getBairro()+ "\nCidade: " + this.getAtRefEndereco().getCidade() + "\nEstado: " + this.getAtRefEndereco().getEstado());
 	}
-	 
+
 //	public void shutdown() {
 //		dmCliente.shutdown();
 //	}

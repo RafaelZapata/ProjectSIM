@@ -31,11 +31,11 @@ public class JanelaPrincipal extends JFrame
     {   this.setTitle("ProjectSIM");
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension d = tk.getScreenSize();
-        screenHeight = d.height;
-        screenWidth = d.width;
+        screenHeight = (int) Math.round(d.height*0.95);
+        screenWidth = (int) Math.round(d.width*0.95);
         this.setSize(screenWidth,screenHeight);
         this.setResizable(false);
-        Image img = tk.getImage("../ProjectSIM/src/images/executar.gif");
+        Image img = tk.getImage("../ProjectSIM/src/images/logo.png");
         this.setIconImage(img);
         this.addWindowListener(new WindowAdapter()
         { public void windowClosing(WindowEvent e)
@@ -43,7 +43,7 @@ public class JanelaPrincipal extends JFrame
         });
 
         //Imagem fundo
-        wallpaper = Toolkit.getDefaultToolkit().createImage("../ProjectSIM/src/images/background5.jpg");
+        wallpaper = Toolkit.getDefaultToolkit().createImage("../ProjectSIM/src/images/background6.png");
         JPanel fundo = new NewContentPane();
         
         Container contentPane = getContentPane();
@@ -66,7 +66,7 @@ public class JanelaPrincipal extends JFrame
         
         //Janela Central
         theDesktop = new JDesktopPane();
-        theDesktop.setSize(screenWidth/3,screenHeight);
+        theDesktop.setSize(screenWidth, screenHeight);
         super.add(fundo, BorderLayout.CENTER);
         this.show();
         
@@ -75,38 +75,38 @@ public class JanelaPrincipal extends JFrame
     private class NewContentPane extends JPanel
     {	protected void paintComponent(final Graphics g)
       	{	super.paintComponent(g);
-            g.drawImage(wallpaper,0,0,screenWidth,screenHeight,this);
+            g.drawImage(wallpaper,-10,-10,screenWidth,(int) (screenHeight*0.85),this);
         }
     }
     
 
 // ********************************
-// Inï¿½cio da Definiï¿½ï¿½o dos Mï¿½todos
+// Inï¿½cio da Definiï¿½ï¿½o dos Métodos
 // ********************************
 
-// Mï¿½todo Janela Novo Cliente
+// Método Janela Novo Cliente
 
     public void jCCliente()
     {  	CadClientView objTCC = new CadClientView();	}
 
-// Mï¿½todo Janela Novo Produto
+// Método Janela Novo Produto
     public void jCProduto()
     {  CadProdutoView objTCP = new CadProdutoView(); }
 
-// Mï¿½todo Janela Novo Funcionario
+// Método Janela Novo Funcionario
     public void jCFuncionario()
     {  CadFuncionarioView objTCF = new CadFuncionarioView(); }
 
-// Mï¿½todo Janela Nova Venda    
+// Método Janela Nova Venda    
     public void jCVendas()
     {  CadVendaView objTCV = new CadVendaView(); }
     
-// Mï¿½todo Janela Sobre
+// Método Janela Sobre
    public void jSobre()
-   { JOptionPane.showMessageDialog(null,"Instituto Federal Fluminense - IFF Campos (Campus Centro)\nDisciplina de Programaï¿½ao Orientada a Objetos\nAplicaï¿½ï¿½o em Java usando Banco de Dados - versï¿½o 1.0\nCopyright - Todos os direitos reservados\nInformaï¿½ï¿½es: galmeida@iff.edu.br","Sobre a APLICAï¿½ï¿½O",JOptionPane.INFORMATION_MESSAGE,new ImageIcon("../ProjectSIM/src/images/ajuda.gif")); }
+   { JOptionPane.showMessageDialog(null,"Instituto Federal Fluminense - IFF Campos (Campus Centro)\nDisciplina de Programação Orientada a Objetos\nAplicação em Java usando Banco de Dados MySQL - versão 1.0\nLayout designed by Professora Giselle Almeida\nCopyright - Todos os direitos reservados\nInformações: diogoasp13@gmail.com/rafaeldzapata@gmail.com","Sobre a APLICATIVO",JOptionPane.INFORMATION_MESSAGE,new ImageIcon("../ProjectSIM/src/images/ajuda.gif")); }
 
 
-// Mï¿½todo Janela Sair
+// Método Janela Sair
    public void jSair()
    { this.dispose(); }
 
