@@ -40,7 +40,7 @@ public class CadProdutoView extends JFrame{
 		JPanel pIncluir = new JPanel();
 		pIncluir.setSize(565,100);
 		pIncluir.setLocation(10,10); 
-		pIncluir.setBorder(BorderFactory.createTitledBorder(" NOVA VENDA "));
+		pIncluir.setBorder(BorderFactory.createTitledBorder(" NOVO PRODUTO "));
 		pIncluir.setLayout(null);
 		container.add(pIncluir);
 		
@@ -54,7 +54,7 @@ public class CadProdutoView extends JFrame{
 		JPanel pExcluir = new JPanel();
 		pExcluir.setSize(565,60);
 		pExcluir.setLocation(10, 200); 
-		pExcluir.setBorder(BorderFactory.createTitledBorder(" CANCELAR VENDA "));
+		pExcluir.setBorder(BorderFactory.createTitledBorder(" EXCLUIR PRODUTO "));
 		pExcluir.setLayout(null);
 		container.add(pExcluir);
 		
@@ -112,7 +112,7 @@ public class CadProdutoView extends JFrame{
 		btnLimpar.setLocation(465, 60);
 		
 		//Entradas da tela de pesquisar
-		jLabelIdListar = new JLabel("Id da Venda: ");
+		jLabelIdListar = new JLabel("Id da Produto: ");
 		jLabelIdListar.setSize(75, 20);
 		jLabelIdListar.setLocation(10, 20);
 		
@@ -128,7 +128,7 @@ public class CadProdutoView extends JFrame{
 		btnListar.setLocation(465, 20);
 		
 		//Entradas da tela Cancelar
-		jLabeliCancelar = new JLabel("Id da Venda: ");
+		jLabeliCancelar = new JLabel("Id do Produto: ");
 		jLabeliCancelar.setSize(80, 20);
 		jLabeliCancelar.setLocation(10, 20);
 		
