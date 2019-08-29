@@ -84,7 +84,7 @@ public class DMProduto extends DMGeral {
 	
 	@SuppressWarnings("unused")
 	public void listarProdutos() {
-		String relatorio = "Relatório Geral dos Produtos: \n";
+		String relatorio = "<h2>Relatório Geral dos Produtos</h2><hr width = 100%";
 		Produto pro;
 		this.conectaDatabase();
 		try {

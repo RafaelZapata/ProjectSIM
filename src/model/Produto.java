@@ -107,7 +107,7 @@ public class Produto {
 	}
 	
 	public String toString() {
-		String retorno = "ID: "+this.getIdProduto()+"<br>Descrição: "+this.getDescricao() + "<br>Quantidade: "+this.getQuantidade()+ "<br>Valor: R$" + this.getValor()+"<br><br>";
+		String retorno = "<br>ID: "+this.getIdProduto()+"<br>Descrição: "+this.getDescricao() + "<br>Quantidade: "+this.getQuantidade()+ "<br>Valor: R$" + this.getValor()+"<br><hr width = 100%>";
 		return retorno;
 	}
 	

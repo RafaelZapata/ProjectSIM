@@ -260,17 +260,24 @@ public class CadProdutoView extends JFrame{
 					Produto pro = new Produto(id);
 					pro.consultar();
 					if(pro.getDescricao()!=null) {
-						Descricao = jTextFieldDescricaoAlterar.getText();
-						if(!Descricao.equals("")) pro.setDescricao(Descricao);
-						valor = Float.parseFloat(jTextFieldValorAlterar.getText());
-						if(valor > 0) pro.setValor(valor);
-						quantidade = Integer.parseInt(jTextFieldQuantidadeAlterar.getText());
-						if(quantidade > 0)pro.setQuantidade(quantidade);
+						if(!jTextFieldDescricaoAlterar.getText().equals("")) {
+							Descricao = jTextFieldDescricaoAlterar.getText();
+							pro.setDescricao(Descricao);
+						}
+						if(!jTextFieldValorAlterar.getText().equals("")) {
+							valor = Float.parseFloat(jTextFieldValorAlterar.getText());
+							pro.setValor(valor);
+						}
+						
+						if(!jTextFieldQuantidadeAlterar.getText().equals("")) {
+							quantidade = Integer.parseInt(jTextFieldQuantidadeAlterar.getText());
+							pro.setQuantidade(quantidade);
+						}
 						pro.alterar();
 					}
-					jTextFieldDescricao.setText(""); 
-					jTextFieldQuantidade.setText(""); 
-					jTextFieldValor.setText("");
+					jTextFieldDescricaoAlterar.setText(""); 
+					jTextFieldQuantidadeAlterar.setText(""); 
+					jTextFieldValorAlterar.setText("");
 				}
 				
 				if (e.getSource() == btnFechar) {

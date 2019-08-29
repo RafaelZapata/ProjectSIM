@@ -22,8 +22,8 @@ public class BarradeMenu
         // Opção do Menu Gerenciamentos 
         JMenuItem menu1Item0 = new JMenuItem("Vendas...",new ImageIcon("../ProjectSIM/src/images/loja.png"));
         menu1Item0.setFont(new Font ("Arial",Font.PLAIN,11));
-        menu1Item0.setMnemonic(KeyEvent.VK_F);
-        menu1Item0.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,InputEvent.CTRL_MASK));
+        menu1Item0.setMnemonic(KeyEvent.VK_A);
+        menu1Item0.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,InputEvent.CTRL_MASK));
         menu1Item0.addActionListener(new ActionListener()
         { public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCVendas"); }
@@ -32,8 +32,8 @@ public class BarradeMenu
         // Opção 1 - Cliente
         JMenuItem menu1Item1 = new JMenuItem("Cliente...",new ImageIcon("../ProjectSIM/src/images/cliente.png"));
         menu1Item1.setFont(new Font ("Arial",Font.PLAIN,11));
-        menu1Item1.setMnemonic(KeyEvent.VK_F);
-        menu1Item1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,InputEvent.CTRL_MASK));
+        menu1Item1.setMnemonic(KeyEvent.VK_C);
+        menu1Item1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,InputEvent.CTRL_MASK));
         menu1Item1.addActionListener(new ActionListener()
         { public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCCliente"); }
@@ -43,8 +43,8 @@ public class BarradeMenu
         // Opção 2 - Vendedor
         JMenuItem menu1Item2 = new JMenuItem("Vendedor...",new ImageIcon("../ProjectSIM/src/images/funcionario.png"));
         menu1Item2.setFont(new Font ("Arial",Font.PLAIN,11));
-        menu1Item2.setMnemonic(KeyEvent.VK_J);
-        menu1Item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J,InputEvent.CTRL_MASK));
+        menu1Item2.setMnemonic(KeyEvent.VK_V);
+        menu1Item2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,InputEvent.CTRL_MASK));
         menu1Item2.addActionListener(new ActionListener()
         { public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCFuncionario"); }
