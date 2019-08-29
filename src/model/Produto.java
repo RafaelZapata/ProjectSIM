@@ -95,7 +95,11 @@ public class Produto {
 	}
 	
 	public void excluir() {
-		dmProduto.excluir(this.idProduto);
+		if(dmProduto.excluir(this.idProduto)) {
+			JOptionPane.showMessageDialog(null, "Produto deleto com sucesso!");
+		}else {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar!");
+		}
 	}
 	
 	public void imprimir() {
@@ -103,8 +107,15 @@ public class Produto {
 	}
 	
 	public String toString() {
-		String retorno = "ID: "+this.getIdProduto()+"<br>Descrição: "+this.getDescricao() + "<br>Quantidade: "+this.getQuantidade()+ "<br>Valor: R$" + this.getValor()+"<br>";
+		String retorno = "ID: "+this.getIdProduto()+"<br>Descrição: "+this.getDescricao() + "<br>Quantidade: "+this.getQuantidade()+ "<br>Valor: R$" + this.getValor()+"<br><br>";
 		return retorno;
 	}
-	 
+	
+	public void alterar() {
+		if(dmProduto.alterar(this)) {
+			JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+		}else {
+			JOptionPane.showMessageDialog(null, "Não foi possivel fazer alteração.");
+		}
+	}
 }

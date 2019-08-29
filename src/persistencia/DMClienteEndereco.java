@@ -5,26 +5,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 import model.*;
 
 public class DMClienteEndereco extends DMGeral{
 
 	@Override
-	public void incluir(Object obj) {
+	public boolean incluir(Object obj) {
 		ClienteEndereco objClienteEndereco = (ClienteEndereco) obj;
 		String incluirSqlClienteEndereco = "INSERT INTO ClienteEndereco (FK_Cliente_idCliente, FK_Endereco_idEndereco) VALUES (?, ?)";
 		try {
 			PreparedStatement pStmt = getConnection().prepareStatement(incluirSqlClienteEndereco);
 			pStmt.setInt(1, objClienteEndereco.getAtRefCliente().getIdCliente());
 			pStmt.setInt(2, objClienteEndereco.getAtRefEndereco().getIdEndereco());
-			pStmt.executeUpdate();
-			
+			pStmt.executeUpdate();		
 			pStmt.close();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}		
 	}
 
@@ -58,14 +57,15 @@ public class DMClienteEndereco extends DMGeral{
         return idEndereco;
     }
 	
-	public void excluir(int id) {
+	public boolean excluir(int id) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlExcluir = "DELETE FROM ClienteEndereco WHERE FK_Cliente_idCliente = "+id+";";
 			stmt.execute(sqlExcluir);
+			return true;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao deletar");
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

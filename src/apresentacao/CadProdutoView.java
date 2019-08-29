@@ -13,12 +13,12 @@ public class CadProdutoView extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel jLabelDescricao, jLabelQuantidade, jLabelValor, jLabelIdListar, jLabeliCancelar;
-	private JTextField jTextFieldDescricao, jTextFieldQuantidade,jTextFieldValor, jTextFieldIdListar, jTextFieldIdCancelar;
-	private JButton btnSalvar, btnListar, btnFechar, btnLimpar, btnExcluir;
+	private JLabel jLabelDescricao, jLabelQuantidade, jLabelValor, jLabelDescricaoListar, jLabelIdExcluir, jLabelDescricaoAlterar, jLabelQuantidadeAlterar, jLabelValorAlterar, jLabelIdAlterar;
+	private JTextField jTextFieldDescricao, jTextFieldQuantidade,jTextFieldValor, jTextFieldDescricaoListar, jTextFieldIdExcluir, jTextFieldDescricaoAlterar, jTextFieldQuantidadeAlterar, jTextFieldValorAlterar, jTextFieldIdAlterar;
+	private JButton btnSalvar, btnListar, btnFechar, btnLimpar, btnExcluir, btnAlterar;
 	
 	String Descricao; 
-	int quantidade;
+	int id, quantidade;
 	float valor;
 	
 	Produto produto;
@@ -26,7 +26,7 @@ public class CadProdutoView extends JFrame{
 	
 	public CadProdutoView() {
 		this.setTitle("Tela Produto");
-		this.setSize(600,360);
+		this.setSize(600,455);
 		this.setLocationRelativeTo(null); 
 		this.setResizable(false);
 		this.setVisible(true);
@@ -58,9 +58,16 @@ public class CadProdutoView extends JFrame{
 		pExcluir.setLayout(null);
 		container.add(pExcluir);
 		
+		JPanel pAlterar = new JPanel();
+		pAlterar.setSize(565,95);
+		pAlterar.setLocation(10, 270); 
+		pAlterar.setBorder(BorderFactory.createTitledBorder(" ALTERAR PRODUTO "));
+		pAlterar.setLayout(null);
+		container.add(pAlterar);
+		
 		JPanel panel = new JPanel();
 		panel.setSize(90,50);
-		panel.setLocation(475,280); 
+		panel.setLocation(475,375); 
 		container.add(panel);
 		
 		btnSalvar = new JButton("Salvar");
@@ -112,36 +119,85 @@ public class CadProdutoView extends JFrame{
 		btnLimpar.setLocation(465, 60);
 		
 		//Entradas da tela de pesquisar
-		jLabelIdListar = new JLabel("Id da Produto: ");
-		jLabelIdListar.setSize(85, 20);
-		jLabelIdListar.setLocation(10, 20);
+		jLabelDescricaoListar = new JLabel("Descricao: ");
+		jLabelDescricaoListar.setSize(75, 20);
+		jLabelDescricaoListar.setLocation(10, 20);
 		
-		jTextFieldIdListar = new JTextField(12); 
-		jTextFieldIdListar.setSize(40, 20);
-		jTextFieldIdListar.setLocation(100, 23);
+		jTextFieldDescricaoListar = new JTextField(12); 
+		jTextFieldDescricaoListar.setSize(250, 20);
+		jTextFieldDescricaoListar.setLocation(80, 23);
 		
-		pListar.add(jLabelIdListar);
-		pListar.add(jTextFieldIdListar);
+		pListar.add(jLabelDescricaoListar);
+		pListar.add(jTextFieldDescricaoListar);
 		
 		btnListar= new JButton("Listar");
 		btnListar.setSize(80, 25);
 		btnListar.setLocation(465, 20);
 		
 		//Entradas da tela Cancelar
-		jLabeliCancelar = new JLabel("Id do Produto: ");
-		jLabeliCancelar.setSize(85, 20);
-		jLabeliCancelar.setLocation(10, 20);
+		jLabelIdExcluir = new JLabel("Id do Produto: ");
+		jLabelIdExcluir.setSize(85, 20);
+		jLabelIdExcluir.setLocation(10, 20);
 		
-		jTextFieldIdCancelar = new JTextField(12); 
-		jTextFieldIdCancelar.setSize(40, 20);
-		jTextFieldIdCancelar.setLocation(100, 23);
+		jTextFieldIdExcluir = new JTextField(12); 
+		jTextFieldIdExcluir.setSize(40, 20);
+		jTextFieldIdExcluir.setLocation(100, 23);
 		
-		pExcluir.add(jLabeliCancelar);
-		pExcluir.add(jTextFieldIdCancelar);
+		pExcluir.add(jLabelIdExcluir);
+		pExcluir.add(jTextFieldIdExcluir);
 		
 		btnExcluir = new JButton("Cancelar");
 		btnExcluir.setSize(85, 25);
 		btnExcluir.setLocation(460, 20);
+		
+		//Entradas de alteração
+		jLabelIdAlterar = new JLabel("Id do Produto: ");
+		jLabelIdAlterar.setSize(85, 20);
+		jLabelIdAlterar.setLocation(10, 20);
+		
+		jTextFieldIdAlterar = new JTextField(12); 
+		jTextFieldIdAlterar.setSize(40, 20);
+		jTextFieldIdAlterar.setLocation(100, 23);
+		
+		pAlterar.add(jLabelIdAlterar);
+		pAlterar.add(jTextFieldIdAlterar);
+		
+		jLabelDescricaoAlterar = new JLabel("Descricao: ");
+		jLabelDescricaoAlterar.setSize(75, 20);
+		jLabelDescricaoAlterar.setLocation(150, 20);
+				
+		jTextFieldDescricaoAlterar = new JTextField(12); 
+		jTextFieldDescricaoAlterar.setSize(250, 20);
+		jTextFieldDescricaoAlterar.setLocation(220, 23);
+				
+		pAlterar.add(jLabelDescricaoAlterar);
+		pAlterar.add(jTextFieldDescricaoAlterar);
+				
+		jLabelValorAlterar = new JLabel("Valor: R$");
+		jLabelValorAlterar.setSize(70, 20);
+		jLabelValorAlterar.setLocation(150, 50);
+				
+		jTextFieldValorAlterar = new JTextField();
+		jTextFieldValorAlterar.setSize(40, 20);
+		jTextFieldValorAlterar.setLocation(210, 53);
+				
+		pAlterar.add(jLabelValorAlterar);
+		pAlterar.add(jTextFieldValorAlterar);
+				
+		jLabelQuantidadeAlterar = new JLabel("Quantidade: ");
+		jLabelQuantidadeAlterar.setSize(75, 20);
+		jLabelQuantidadeAlterar.setLocation(10, 50);
+				
+		jTextFieldQuantidadeAlterar = new JTextField(50);
+		jTextFieldQuantidadeAlterar.setSize(50, 20);
+		jTextFieldQuantidadeAlterar.setLocation(90, 53);
+				
+		pAlterar.add(jLabelQuantidadeAlterar);
+		pAlterar.add(jTextFieldQuantidadeAlterar);
+				
+		btnAlterar = new JButton("Alterar");
+		btnAlterar.setSize(80, 25);
+		btnAlterar.setLocation(465, 55);
 		
 		btnFechar = new JButton("Fechar");
 		
@@ -166,7 +222,7 @@ public class CadProdutoView extends JFrame{
 				
 				if (e.getSource() == btnListar)
 				{	
-					Descricao = jTextFieldDescricao.getText();
+					Descricao = jTextFieldDescricaoListar.getText();
 					produto = new Produto(Descricao);
 					if (Descricao.equals("")) {
 						produto.listarProdutos();
@@ -182,10 +238,10 @@ public class CadProdutoView extends JFrame{
 				
 				if (e.getSource() == btnExcluir)
 				{	
-					Descricao = jTextFieldDescricao.getText();
-					produto = new Produto(Descricao);
+					id = Integer.parseInt(jTextFieldIdExcluir.getText());
+					produto = new Produto(id);
 					produto.consultar();
-					if (produto.getIdProduto() > 0) {
+					if (produto.getDescricao()!=null) {
 						String[] options = {"Sim", "Não"};
 						int resultado = JOptionPane.showOptionDialog(null, "Produto encontrado.\nID: "+produto.getIdProduto()+"\nQuantidade: "+produto.getQuantidade()+"\nDescricao: "+produto.getDescricao(), "Excluir Produto", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[1]);
 						if (resultado == 0) {
@@ -197,6 +253,24 @@ public class CadProdutoView extends JFrame{
 					} else {
 						JOptionPane.showMessageDialog(null, "Produto não encontrado!");
 					}		
+				}
+				
+				if (e.getSource() == btnAlterar) {		
+					id = Integer.parseInt(jTextFieldIdAlterar.getText());
+					Produto pro = new Produto(id);
+					pro.consultar();
+					if(pro.getDescricao()!=null) {
+						Descricao = jTextFieldDescricaoAlterar.getText();
+						if(!Descricao.equals("")) pro.setDescricao(Descricao);
+						valor = Float.parseFloat(jTextFieldValorAlterar.getText());
+						if(valor > 0) pro.setValor(valor);
+						quantidade = Integer.parseInt(jTextFieldQuantidadeAlterar.getText());
+						if(quantidade > 0)pro.setQuantidade(quantidade);
+						pro.alterar();
+					}
+					jTextFieldDescricao.setText(""); 
+					jTextFieldQuantidade.setText(""); 
+					jTextFieldValor.setText("");
 				}
 				
 				if (e.getSource() == btnFechar) {
@@ -214,12 +288,14 @@ public class CadProdutoView extends JFrame{
 		btnFechar.addMouseListener(batman);
 		btnLimpar.addMouseListener(batman);
 		btnExcluir.addMouseListener(batman);
+		btnAlterar.addMouseListener(batman);
 		
 		//Adicionando botões ao painel
 		pIncluir.add(btnSalvar);		pListar.add(btnListar);
 		panel.add(btnFechar);
 		pIncluir.add(btnLimpar);
 		pExcluir.add(btnExcluir);
+		pAlterar.add(btnAlterar);
 		
 						
 		this.repaint();		

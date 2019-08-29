@@ -39,6 +39,6 @@ public abstract class DMGeral {
 		}
 	}
 	
-	public abstract void incluir(Object obj);
+	public abstract boolean incluir(Object obj);
 	public abstract Object consultar(Object obj);
 }

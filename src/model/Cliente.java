@@ -96,7 +96,9 @@ public class Cliente extends Pessoa{
 	}
 	
 	public void excluir() {
-		dmCliente.excluir(this.id);
+		if(!dmCliente.excluir(this.id)) {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+		}
 	}
 	
 	public void imprimir() {

@@ -10,7 +10,7 @@ import model.*;
 public class DMProduto extends DMGeral {
 
 	@Override
-	public void incluir(Object obj) {
+	public boolean incluir(Object obj) {
 		Produto objProduto = (Produto) obj;
 		try {
 			String incluirSqlProduto = "INSERT INTO Produto (descricao, valor, quantidade) VALUES (?, ?, ?)";
@@ -26,10 +26,10 @@ public class DMProduto extends DMGeral {
 			int idGerado = resultSet.getInt(1);
 			objProduto.setIdProduto(idGerado);
 			pStmt.close();
-			
+			return true;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 		
 		
@@ -70,14 +70,15 @@ public class DMProduto extends DMGeral {
 		return objProduto;
 	}
 	
-	public void excluir(int id) {
+	public boolean excluir(int id) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlExcluir = "DELETE FROM Produto WHERE idProduto = "+id+";";
 			stmt.execute(sqlExcluir);
+			return true;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao deletar");
 			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -110,4 +111,24 @@ public class DMProduto extends DMGeral {
 		this.shutDown();
 	}
 	
+	public boolean alterar(Object obj) {
+		Produto objProduto = (Produto) obj;
+		String sqlAlterar = "UPDATE Produto SET descricao = (?), valor = (?), quantidade = (?) WHERE idProduto = (?);";
+		try {
+			PreparedStatement pStmt = getConnection().prepareStatement(sqlAlterar);
+			pStmt.setString(1, objProduto.getDescricao());
+			pStmt.setFloat(2, objProduto.getValor());
+			pStmt.setInt(3, objProduto.getQuantidade());
+			pStmt.setInt(4, objProduto.getIdProduto());
+			
+			pStmt.executeUpdate();
+			pStmt.close();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Problemas no sql do DMProduto");
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 }

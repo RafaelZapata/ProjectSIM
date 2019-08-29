@@ -6,14 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
 import model.ListaProdutos;
 
 public class DMListaProduto extends DMGeral{
 
 	@Override
-	public void incluir(Object obj) {
+	public boolean incluir(Object obj) {
 		ListaProdutos objListaProdutos = (ListaProdutos) obj;
 		String incluirSqlListaProdutos = "INSERT INTO ListaProdutos (quantidade, FK_Venda_idVenda, FK_Produto_idProduto) VALUES (?, ?, ?)";
 		try {
@@ -24,10 +22,11 @@ public class DMListaProduto extends DMGeral{
 			pStmt.executeUpdate();
 			
 			pStmt.close();
+			return true;
 		} catch (SQLException e) {
 			System.out.println("Falha DMListaProdutos!");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}		
 		
 	}

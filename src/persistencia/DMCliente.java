@@ -1,16 +1,13 @@
 package persistencia;
 
 import java.sql.*;
-
-import javax.swing.JOptionPane;
-
 import model.*;
 
 public class DMCliente extends DMGeral{
 	Connection conCliente;
 
 	@Override
-	public void incluir(Object obj) {
+	public boolean incluir(Object obj) {
 		Cliente objCliente = (Cliente) obj;
 		try {
 //			Statement statement = getConnection().createStatement();
@@ -27,9 +24,10 @@ public class DMCliente extends DMGeral{
 			int idGerado = resultSet.getInt(1);
 			objCliente.setIdCliente(idGerado);
 			pStmt.close();
+			return true;
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
+			return false;
 		}
 		
 	}
@@ -80,14 +78,15 @@ public class DMCliente extends DMGeral{
 		return objCliente;
 	}
 	
-	public void excluir(int id) {
+	public boolean excluir(int id) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlExcluir = "DELETE FROM Cliente WHERE idCliente = "+id+";";
 			stmt.execute(sqlExcluir);
+			return true;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao deletar");
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

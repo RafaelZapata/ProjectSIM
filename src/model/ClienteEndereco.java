@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.JOptionPane;
+
 import persistencia.DMClienteEndereco;
 
 public class ClienteEndereco {
@@ -40,7 +42,9 @@ public class ClienteEndereco {
 	}
 	
 	public void excluir() {
-		dmClienteEndereco.excluir(atRefCliente.getIdCliente());
+		if(!dmClienteEndereco.excluir(atRefCliente.getIdCliente())){
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+		}
 	}
 	
 }

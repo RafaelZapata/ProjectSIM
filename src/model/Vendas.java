@@ -196,12 +196,20 @@ public class Vendas{
 		if(list == null) {
 			JOptionPane.showMessageDialog(null, "Impossivel incluir venda!");
 		} else {
-			dmVenda.incluir(this);			
+			if(dmVenda.incluir(this)) {
+				JOptionPane.showMessageDialog(null, "Venda cadastrada com Sucesso!");
+			}else {
+				JOptionPane.showMessageDialog(null, "Falha ao cadastrar venda!");
+			}
 		}
 	}
 	
 	public void cancelarVenda() {
-		dmVenda.cancelar(this.idVenda);
+		if(dmVenda.cancelar(this.idVenda)) {
+			JOptionPane.showMessageDialog(null, "Venda cancelada!");
+		}else {
+			JOptionPane.showMessageDialog(null, "Erro ao cancelar a venda!");
+		}
 	}
 	
 	public void imprimir() {

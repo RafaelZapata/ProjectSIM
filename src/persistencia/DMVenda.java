@@ -4,18 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
-
-import javax.swing.JOptionPane;
-
 import model.*;
 
 public class DMVenda extends DMGeral{
 
 	@Override
-	public void incluir(Object obj) {
+	public boolean incluir(Object obj) {
 		Vendas objVenda = (Vendas) obj;
 		
 		try {
@@ -43,13 +38,12 @@ public class DMVenda extends DMGeral{
 				lp.incluir();
 				
 			}
-			
-			JOptionPane.showMessageDialog(null, "Venda cadastrada com Sucesso!");
-			
 			pStmt.close();
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 
@@ -86,18 +80,20 @@ public class DMVenda extends DMGeral{
 		return objVenda;
 	}
 	
-	public void cancelar(int id) {
+	public boolean cancelar(int id) {
 		String sqlCancelar = "UPDATE Venda SET status = false WHERE idVenda = "+id+";";
 		try {
 			Statement stmt = getConnection().createStatement();
 			if(stmt.executeUpdate(sqlCancelar) == 1) {
-				JOptionPane.showMessageDialog(null, "Venda cancelada!");				
+				return true;
 			} else {
-				JOptionPane.showMessageDialog(null, "Erro ao cancelar a venda!");				
+				return false;
 			}
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao cancelar no banco de dados!");
+			System.out.println("Erro ao cancelar no banco de dados!");
 			e.printStackTrace();
+			return false;
+			
 		}
 	}
 	

@@ -5,14 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 import model.Endereco;
 
 public class DMEndereco extends DMGeral{
 
 	@Override
-	public void incluir(Object obj) {
+	public boolean incluir(Object obj) {
 		Endereco objEndereco= (Endereco) obj;
 		try {
 			String incluirSqlEndereco= "INSERT INTO Endereco(rua, numero, bairro, cidade, estado) VALUES (?, ?, ?, ?, ?)";
@@ -30,10 +28,10 @@ public class DMEndereco extends DMGeral{
 			objEndereco.setIdEndereco(idGerado);
 			
 			pStmt.close();
-			
+			return true;
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
+			return false;
 		}
 	}
 
@@ -95,14 +93,15 @@ public class DMEndereco extends DMGeral{
 	
 	
 	
-	public void excluir(int id) {
+	public boolean excluir(int id) {
 		try {
 			Statement stmt = getConnection().createStatement();
 			String sqlExcluir = "DELETE FROM Endereco WHERE idEndereco = "+id+";";
 			stmt.execute(sqlExcluir);
+			return true;
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro ao deletar");
 			e.printStackTrace();
+			return false;
 		}
 	}
 	

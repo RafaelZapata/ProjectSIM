@@ -84,6 +84,8 @@ public class Endereco {
 	}
 	
 	public void excluir(int id) {
-		dmEndereco.excluir(id);
+		if(!dmEndereco.excluir(id)) {
+			JOptionPane.showMessageDialog(null, "Erro ao deletar");
+		}
 	}
 }
