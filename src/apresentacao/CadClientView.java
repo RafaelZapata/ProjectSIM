@@ -28,6 +28,9 @@ public class CadClientView extends JFrame{
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setLayout(null);
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage("../ProjectSIM/src/images/cliente.png");
+	    this.setIconImage(img);
 		
 		Container container = getContentPane();
 		

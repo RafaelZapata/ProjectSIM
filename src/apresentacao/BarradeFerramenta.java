@@ -17,7 +17,7 @@ public class BarradeFerramenta
     {   JToolBar BFerramenta = new JToolBar();
         BFerramenta.setFloatable(true);
         
-        Action cVendasAction = new AbstractAction("Vendas", new ImageIcon("../ProjectSIM/src/images/cliente.png"))
+        Action cVendasAction = new AbstractAction("Vendas", new ImageIcon("../ProjectSIM/src/images/loja.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jCVendas"); }
@@ -30,7 +30,7 @@ public class BarradeFerramenta
             { chamaMetodo(e,"jCCliente"); }
         };
 
-        Action cAjudaAction = new AbstractAction("Ajuda", new ImageIcon("../ProjectSIM/src/images/ajuda.gif"))
+        Action cAjudaAction = new AbstractAction("Ajuda", new ImageIcon("../ProjectSIM/src/images/ajuda.png"))
         { 	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jSobre"); }
@@ -48,7 +48,7 @@ public class BarradeFerramenta
             { chamaMetodo(e,"jCProduto"); }
         };
 
-        Action exitAction = new AbstractAction("Sair", new ImageIcon("../ProjectSIM/src/images/sair.gif"))
+        Action exitAction = new AbstractAction("Sair", new ImageIcon("../ProjectSIM/src/images/sair.png"))
         {	private static final long serialVersionUID = 1L;
         	public void actionPerformed(ActionEvent e)
             { chamaMetodo(e,"jSair"); }

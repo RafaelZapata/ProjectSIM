@@ -30,6 +30,9 @@ public class CadFuncionarioView extends JFrame{
 		this.setResizable(false);
 		this.setVisible(true);
 		this.setLayout(null);
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Image img = tk.getImage("../ProjectSIM/src/images/funcionario.png");
+	    this.setIconImage(img);
 		
 		Container container = getContentPane();
 		

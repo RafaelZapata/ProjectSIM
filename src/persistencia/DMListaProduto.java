@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -57,15 +58,14 @@ public class DMListaProduto extends DMGeral{
 	
 	public List<ListaProdutos> listarProdutos(int id){
 		
-		List<ListaProdutos> produtos = null;
+		List<ListaProdutos> produtos =  new ArrayList<ListaProdutos>();
 		try {
-			String consultarSqlProduto = "SELECT * FROM ListaProdutos WHERE FK_Venda_idVenda = "+id+";";
+			String consultarSqlLista = "SELECT * FROM ListaProdutos WHERE FK_Venda_idVenda = "+id+";";
 			Statement stmt = getConnection().createStatement();
-			ResultSet result = stmt.executeQuery(consultarSqlProduto);
+			ResultSet result = stmt.executeQuery(consultarSqlLista);
 			while(result.next()) {
-				ListaProdutos lp = new ListaProdutos(result.getInt("FK_Venda_idVenda"),result.getInt("FK_Venda_idProduto"), result.getInt("quantidade"));
+				ListaProdutos lp = new ListaProdutos(result.getInt("FK_Venda_idVenda"),result.getInt("FK_Produto_idProduto"), result.getInt("quantidade"));
 				produtos.add(lp);
-				lp = null;
 			}
 			
 			result.close();

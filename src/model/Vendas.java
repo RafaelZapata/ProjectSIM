@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
@@ -19,6 +20,7 @@ public class Vendas{
 	private boolean status;
 	private Cliente atRefCliente;
 	private Vendedor atRefVendedor;
+	private Vector<Integer> listaProdutosDisponiveis = new Vector<Integer>();
 	private List<ListaProdutos> list = new ArrayList<ListaProdutos>();
 	
 	private DMVenda dmVenda;
@@ -140,15 +142,33 @@ public class Vendas{
 	public void setIdVenda(int idVenda) {
 		this.idVenda = idVenda;
 	}
+	
+	public void getListaProdutosDisponiveis() {
+		listaProdutosDisponiveis = dmVenda.getListaProdutosDisponiveis();
+	}
 	//----------------------------------------------//
 
 	
 	
 	//Funções//
 	
-	public void addProduto(int id, int quantidade) {
+	public boolean addProduto(int id, int quantidade) {
 		ListaProdutos lp = new ListaProdutos(id, quantidade);
-		list.add(lp);
+		if(listaProdutosDisponiveis.isEmpty()) {
+			this.getListaProdutosDisponiveis();
+		}
+		if(listaProdutosDisponiveis.contains(id)) {
+			Produto pro = new Produto(id);
+			pro.consultar();
+			if(pro.getQuantidade()> quantidade) {
+				list.add(lp);	
+			}else {
+				JOptionPane.showMessageDialog(null, "Quantidade indiponível do produto.\nDisponível: "+pro.getQuantidade()+"\nSolicitado: "+quantidade);
+				return false;
+			}
+			return true;
+		}else JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+		return false;
 	}
 	
 	public boolean excluirProduto(int id, int quantidade) {
@@ -185,7 +205,7 @@ public class Vendas{
 	}
 	
 	public void imprimir() {
-		JOptionPane.showMessageDialog(null, "IdVenda: "+this.getIdVenda() + "\nIdVendedor: "+this.getIdVendedor()+ "\nIdCliente:" + this.getIdCliente());
+		JOptionPane.showMessageDialog(null, "Id da Venda: "+this.getIdVenda() + "\nVendedor: "+atRefVendedor.getNome()+ "\nCliente:" + atRefCliente.getNome()+"\nCPF: "+atRefCliente.getCpf()+"\nData: "+this.getData()+"\nValor: R$"+this.getValorVenda());
 	}
 	
 	public float calcularTotal() {
