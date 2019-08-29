@@ -57,7 +57,7 @@ public class CadClientView extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setSize(90,50);
-		panel.setLocation(490,440); 
+		panel.setLocation(475,440); 
 		container.add(panel);
 		
 		//Entradas de inclusao
@@ -163,11 +163,11 @@ public class CadClientView extends JFrame{
 		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setSize(80, 25);
-		btnSalvar.setLocation(370, 150);
+		btnSalvar.setLocation(380, 150);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setSize(80, 25);
-		btnLimpar.setLocation(455, 150);
+		btnLimpar.setLocation(465, 150);
 		
 		//Entradas da tela de pesquisar
 		jLabelIdListar = new JLabel("Id: ");
@@ -205,7 +205,7 @@ public class CadClientView extends JFrame{
 		
 		btnListar= new JButton("Listar");
 		btnListar.setSize(80, 25);
-		btnListar.setLocation(455, 110);
+		btnListar.setLocation(465, 110);
 		
 		//Entradas da tela Excluir
 		jLabelCpfExcluir = new JLabel("Cpf: ");
@@ -221,7 +221,7 @@ public class CadClientView extends JFrame{
 		
 		btnExcluir = new JButton("Excluir");
 		btnExcluir.setSize(80, 25);
-		btnExcluir.setLocation(455, 20);
+		btnExcluir.setLocation(465, 20);
 		
 		btnFechar = new JButton("Fechar");
 		

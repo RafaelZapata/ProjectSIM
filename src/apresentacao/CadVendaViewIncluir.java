@@ -13,13 +13,14 @@ public class CadVendaViewIncluir extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JLabel jLabelidProduto, jLabelQuantidade;
 	private JTextField jTextFieldidProduto, jTextFieldQuantidade;
-	private JButton btnSalvar, btnIncluir, btnListar, btnRemover, btnCancelar;
+	private JButton btnSalvar, btnIncluir, btnRemover, btnCancelar;
+	private String relatorio = "";
 
 	int quantidade, id;
 	
 	public CadVendaViewIncluir(Vendas venda) {
 		this.setTitle("Carrinho");
-		this.setSize(600,215);
+		this.setSize(535,395);
 		this.setLocationRelativeTo(null); 
 		this.setResizable(false);
 		this.setVisible(true);
@@ -31,12 +32,33 @@ public class CadVendaViewIncluir extends JFrame{
 		Container container = getContentPane();
 		
 		JPanel pIncluir = new JPanel();
-		pIncluir.setSize(565,150);
+		pIncluir.setSize(500,150);
 		pIncluir.setLocation(10,10); 
 		pIncluir.setBorder(BorderFactory.createTitledBorder(" ADICIONAR PRODUTOS "));
 		pIncluir.setLayout(null);
 		container.add(pIncluir);
 		
+		JPanel panel = new JPanel();
+		panel.setSize(500, 200);
+		panel.setLocation(10, 165);
+		panel.setBorder(BorderFactory.createTitledBorder(" CARRINHO "));
+		panel.setLayout(null);
+		container.add(panel);
+	
+		JTextPane tp = new JTextPane();
+        tp.setSize(400, 180);
+        tp.setContentType("text/html");
+        tp.setText("Sem itens no carrinho.");	        
+        
+        panel.setLayout(new BorderLayout());
+        panel.setVisible(true);
+        
+        panel.setBounds(10, 165, 500, 180);
+        panel.setPreferredSize(new Dimension(500, 200));
+         
+        final JScrollPane scrollp = new JScrollPane(tp, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        panel.add(scrollp);
+
 		//Entradas de inclusao
 		jLabelidProduto = new JLabel("Id Produto: ");
 		jLabelidProduto.setSize(80, 20);
@@ -72,14 +94,10 @@ public class CadVendaViewIncluir extends JFrame{
 		btnRemover = new JButton("Remover");
 		btnRemover.setSize(85, 25);
 		btnRemover.setLocation(200, 110);
-		
-		btnListar= new JButton("Listar");
-		btnListar.setSize(80, 25);
-		btnListar.setLocation(300, 110);
 
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setSize(85, 25);
-		btnCancelar.setLocation(400, 110);	
+		btnCancelar.setLocation(300, 110);	
 		
 		class BatSinal extends MouseAdapter {
 			public void mouseClicked(MouseEvent e) {
@@ -94,7 +112,15 @@ public class CadVendaViewIncluir extends JFrame{
 					id = Integer.parseInt(jTextFieldidProduto.getText());
 					quantidade = Integer.parseInt(jTextFieldQuantidade.getText());
 					if(venda.addProduto(id, quantidade)) {
-						JOptionPane.showMessageDialog(null, "Produto incluido com sucesso!");						
+						JOptionPane.showMessageDialog(null, "Produto incluido com sucesso!");
+//						for(ListaProdutos lp : venda.getList()) {
+//							Produto pro = new Produto(lp.getIdProduto());
+//							pro.consultar();
+//							pro.setQuantidade(lp.getQuantidade());
+//							relatorio += pro.toString();
+//						}
+//						tp.setText(relatorio);
+						attCarrinho(venda, relatorio, tp);
 					}else JOptionPane.showMessageDialog(null, "Falha ao inserir.");
 					
 					//Executar o botao limpar - Mas como n„o est· funcionando, vamos apenas colar o codigo
@@ -110,22 +136,7 @@ public class CadVendaViewIncluir extends JFrame{
 						quantidade = Integer.parseInt(jTextFieldQuantidade.getText());						
 					}
 					venda.excluirProduto(id, quantidade);
-				}
-				
-				if (e.getSource() == btnListar){
-					if(venda.getList() != null) {
-						String relatorio = "";
-						for(ListaProdutos lp : venda.getList()) {
-							Produto pro = new Produto(lp.getIdProduto());
-							pro.consultar();
-							pro.setQuantidade(lp.getQuantidade());
-							relatorio += pro.toString();
-						}
-						@SuppressWarnings("unused")
-						RelatorioProdutos rp = new RelatorioProdutos(relatorio);
-					}else {
-						JOptionPane.showMessageDialog(null, "N„o h· produtos no carrinho!");
-					}
+					attCarrinho(venda, relatorio, tp);
 				}
 				
 				if (e.getSource() == btnCancelar){	
@@ -133,23 +144,31 @@ public class CadVendaViewIncluir extends JFrame{
 				}
 			}
 		}
-				
 		
 		//adicionando ouvinte para os bot√µes
 		BatSinal batman = new BatSinal();
 		btnIncluir.addMouseListener(batman);
 		btnSalvar.addMouseListener(batman);
-		btnListar.addMouseListener(batman);
 		btnRemover.addMouseListener(batman);
 		btnCancelar.addMouseListener(batman);
 		
 		//Adicionando botıes ao painel
 		pIncluir.add(btnIncluir);
-		pIncluir.add(btnSalvar);		pIncluir.add(btnListar);
+		pIncluir.add(btnSalvar);
 		pIncluir.add(btnRemover);
 		pIncluir.add(btnCancelar);
 		
 						
 		this.repaint();		
+	}
+	
+	public void attCarrinho(Vendas venda, String relatorio, JTextPane tp) {
+		for(ListaProdutos lp : venda.getList()) {
+			Produto pro = new Produto(lp.getIdProduto());
+			pro.consultar();
+			pro.setQuantidade(lp.getQuantidade());
+			relatorio += pro.toString();
+		}
+		tp.setText(relatorio);	
 	}
 }

@@ -59,7 +59,7 @@ public class CadFuncionarioView extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setSize(90,50);
-		panel.setLocation(490,335); 
+		panel.setLocation(475,335); 
 		container.add(panel);
 		
 		//Entradas de inclusao
@@ -110,11 +110,11 @@ public class CadFuncionarioView extends JFrame{
 		
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.setSize(80, 25);
-		btnSalvar.setLocation(370, 80);
+		btnSalvar.setLocation(380, 80);
 		
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setSize(80, 25);
-		btnLimpar.setLocation(455, 80);
+		btnLimpar.setLocation(465, 80);
 		
 		//Entradas da tela de pesquisar
 		jLabelIdListar = new JLabel("Id: ");
@@ -152,7 +152,7 @@ public class CadFuncionarioView extends JFrame{
 		
 		btnListar= new JButton("Listar");
 		btnListar.setSize(80, 25);
-		btnListar.setLocation(455, 80);
+		btnListar.setLocation(465, 80);
 		
 		//Entradas da tela Excluir
 		jLabelCpfExcluir = new JLabel("Cpf: ");
@@ -168,7 +168,7 @@ public class CadFuncionarioView extends JFrame{
 		
 		btnExcluir = new JButton("Excluir");
 		btnExcluir.setSize(80, 25);
-		btnExcluir.setLocation(455, 20);
+		btnExcluir.setLocation(465, 20);
 		
 		btnFechar = new JButton("Fechar");
 		

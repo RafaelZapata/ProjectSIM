@@ -60,7 +60,7 @@ public class CadProdutoView extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setSize(90,50);
-		panel.setLocation(490,280); 
+		panel.setLocation(475,280); 
 		container.add(panel);
 		
 		btnSalvar = new JButton("Salvar");
@@ -113,12 +113,12 @@ public class CadProdutoView extends JFrame{
 		
 		//Entradas da tela de pesquisar
 		jLabelIdListar = new JLabel("Id da Produto: ");
-		jLabelIdListar.setSize(75, 20);
+		jLabelIdListar.setSize(85, 20);
 		jLabelIdListar.setLocation(10, 20);
 		
 		jTextFieldIdListar = new JTextField(12); 
 		jTextFieldIdListar.setSize(40, 20);
-		jTextFieldIdListar.setLocation(90, 23);
+		jTextFieldIdListar.setLocation(100, 23);
 		
 		pListar.add(jLabelIdListar);
 		pListar.add(jTextFieldIdListar);
@@ -129,12 +129,12 @@ public class CadProdutoView extends JFrame{
 		
 		//Entradas da tela Cancelar
 		jLabeliCancelar = new JLabel("Id do Produto: ");
-		jLabeliCancelar.setSize(80, 20);
+		jLabeliCancelar.setSize(85, 20);
 		jLabeliCancelar.setLocation(10, 20);
 		
 		jTextFieldIdCancelar = new JTextField(12); 
 		jTextFieldIdCancelar.setSize(40, 20);
-		jTextFieldIdCancelar.setLocation(90, 23);
+		jTextFieldIdCancelar.setLocation(100, 23);
 		
 		pExcluir.add(jLabeliCancelar);
 		pExcluir.add(jTextFieldIdCancelar);

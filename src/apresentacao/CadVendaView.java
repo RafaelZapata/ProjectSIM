@@ -56,7 +56,7 @@ public class CadVendaView extends JFrame{
 		
 		JPanel panel = new JPanel();
 		panel.setSize(90,50);
-		panel.setLocation(490,280); 
+		panel.setLocation(475,280); 
 		container.add(panel);
 		
 		//Entradas de inclusao
